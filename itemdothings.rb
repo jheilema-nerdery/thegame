@@ -27,7 +27,7 @@ class ItemThingDoer
       myself = { :PlayerName => 'jheilema' }
       ThingUser.new(@thing, myself).do
         # effects over time, positive
-    when "Moogle",            # random +2
+    when "Moogle",            # *3
           "7777",             # *7
           "Warthog",          # *2
           "Chocobo",          # badge
@@ -39,20 +39,30 @@ class ItemThingDoer
       ThingUser.new(@thing, myself).do
     when "Hard Knuckle",    # -200
           "Buster Sword",   # 0 ?
-          "Master Sword",   # ?
           "Green Shell",    # -100
-          "Red Shell",      # -100
           "SPNKR",          # -100
           "Banana Peel",    # -100
-          "Space Invaders", # ?????
+          "Space Invaders", # ?????. Bypasses Tanooki Suit.
           "Fire Flower",    # -35
+          "Pandora's Box",  #
+          "Golden Gun",     #
           "Holy Water"      # -10 over 10 hits
       players = PlayerFinder.find_top
       player = players[0]
       player = (player[:PlayerName] == 'jheilema') ? players[1] : player
       ThingUser.new(@thing, player).do
-    when false
-      ThingUser.new(@thing).do
+    when "Red Shell"        # -100
+      players = PlayerFinder.find_top
+      player = players[0]
+      if (player[:PlayerName] == 'jheilema')
+        #  save it for later, I'm at the top of the list and it'll just hit me
+        open('items.list', 'a') do |f|
+          f.puts @thing.to_json
+        end
+        'try the red shell again later when not in first'
+      else
+        ThingUser.new(@thing, player).do
+      end
     when "Mushroom",
         "Crowbar",
         "Box of Bees",
@@ -62,10 +72,11 @@ class ItemThingDoer
       end
       'what do: ' + @thing[:Fields].first[:Name]
     else
-      # "Blue Shell"
-      # "Charizard",
-      # "Fus Ro Dah",
-      # "Hadouken",
+      # "Blue Shell"      # hits the #1 person for a ton, take'm down a notch
+      # "Charizard",      # -500
+      # "Fus Ro Dah",     # silence someone
+      # "Master Sword",   # minus a lot, a whole lot. more than the blue shell
+      # "Hadouken",       # -25% on gained points
       # "Tanooki Suit",   # seems to block bonus points, other effects...?
       #
       # "Carbuncle",      # protection ?

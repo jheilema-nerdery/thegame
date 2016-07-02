@@ -12,6 +12,9 @@ require './fileReadAndClearer'
 # <dafdd972-bfe8-4d43-95b4-21042a761d98> | <Da Da Da Da Daaa Da DAA da da>
 # <10db30ce-bbd6-4f4c-8012-93d63a44feed> | <Hard Knuckle>
 # <68fb2207-aaf7-4f88-934f-a5471466c143> | <Charizard>
+# <d8f22fe6-d928-4ed1-95b9-eee72a785518> | <Bo Jackson>
+# <d4fcb5e5-e63c-44c8-b673-4c9b710c678f> | <Bo Jackson>
+# <e7140cfd-291a-42fc-8840-7edb2ca786d8> | <Hard Knuckle>
 
 
 API_KEY = '***REMOVED***'
@@ -40,7 +43,6 @@ loop do
 
     unless result[:Item].nil?
       ItemThingDoer.new(result[:Item]).save
-      last_item = result[:Item]
     end
     puts http.body_str
 
