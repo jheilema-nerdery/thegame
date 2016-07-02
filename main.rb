@@ -35,7 +35,7 @@ loop do
       http.headers['apikey'] = API_KEY
     end
 
-    open('log', 'a') do |f|
+    open('log/main.log', 'a') do |f|
       f.puts http.body_str
     end
 
@@ -52,7 +52,7 @@ loop do
       item = FileReadAndClearer.new('items.list').get[item_counter]
       result = ItemThingDoer.new(item).do
 
-      open('log', 'a') do |f|
+      open('log/main.log', 'a') do |f|
         f.puts result
       end
       puts result
@@ -65,7 +65,7 @@ loop do
         item = FileReadAndClearer.new('items.list').get[item_counter]
         result = ItemThingDoer.new(item).do
 
-        open('log', 'a') do |f|
+        open('log/main.log', 'a') do |f|
           f.puts result
         end
         puts result
@@ -76,7 +76,7 @@ loop do
 
     sleep 1
   rescue Curl::Err::RecvError
-    open('log', 'a') do |f|
+    open('log/main.log', 'a') do |f|
       f.puts 'Rescuing from a timeout'
     end
     puts 'Rescuing from a timeout'
