@@ -15,6 +15,7 @@ require './fileReadAndClearer'
 # <d8f22fe6-d928-4ed1-95b9-eee72a785518> | <Bo Jackson>
 # <d4fcb5e5-e63c-44c8-b673-4c9b710c678f> | <Bo Jackson>
 # <e7140cfd-291a-42fc-8840-7edb2ca786d8> | <Hard Knuckle>
+# <34a56dca-f5b4-408b-bd54-364f16c6ddc3> | <UUDDLRLRBA>
 
 
 API_KEY = '***REMOVED***'
@@ -49,7 +50,7 @@ loop do
     counter += 1
 
     if counter == 60
-      item = FileReadAndClearer.new('items.list').get[item_counter]
+      item = FileReadAndClearer.new('tmp/items.list').get[item_counter]
       result = ItemThingDoer.new(item).do
 
       open('log/main.log', 'a') do |f|
@@ -62,7 +63,7 @@ loop do
 
       if result.is_a? String
         puts "====== trying another ===================="
-        item = FileReadAndClearer.new('items.list').get[item_counter]
+        item = FileReadAndClearer.new('tmp/items.list').get[item_counter]
         result = ItemThingDoer.new(item).do
 
         open('log/main.log', 'a') do |f|

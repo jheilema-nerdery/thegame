@@ -7,7 +7,7 @@ class ItemThingDoer
   end
 
   def save
-    open('items.list', 'a') do |f|
+    open('tmp/items.list', 'a') do |f|
       f.puts @thing.to_json
     end
   end
@@ -15,7 +15,7 @@ class ItemThingDoer
   def do
     case @thing[:Fields].first[:Name]
       # one-time, positive
-    when "UUDDLRLRBA",                    # random, 30-100?
+    when "UUDDLRLRBA",                    # random, 3-100?
           "Bo Jackson",                   # 7
           "Buffalo",                      # 100
           "Wedge",                        # 50
@@ -27,7 +27,7 @@ class ItemThingDoer
       myself = { :PlayerName => 'jheilema' }
       ThingUser.new(@thing, myself).do
         # effects over time, positive
-    when "Moogle",            # *3
+    when "Moogle",            # *3, 30m
           "7777",             # *7
           "Warthog",          # *2
           "Chocobo",          # badge
@@ -56,7 +56,7 @@ class ItemThingDoer
       player = players[0]
       if (player[:PlayerName] == 'jheilema')
         #  save it for later, I'm at the top of the list and it'll just hit me
-        open('items.list', 'a') do |f|
+        open('tmp/items.list', 'a') do |f|
           f.puts @thing.to_json
         end
         'try the red shell again later when not in first'
@@ -67,7 +67,7 @@ class ItemThingDoer
         "Crowbar",
         "Box of Bees",
         "Rail Gun"        # 0 ?
-      open('whatdo.list', 'a') do |f|
+      open('tmp/whatdo.list', 'a') do |f|
         f.puts @thing.to_json
       end
       'what do: ' + @thing[:Fields].first[:Name]
@@ -82,7 +82,7 @@ class ItemThingDoer
       # "Carbuncle",      # protection ?
       # "Varia Suit",     # protection ?
       # "Gold Ring",      # protection ?
-      open('save.list', 'a') do |f|
+      open('tmp/save.list', 'a') do |f|
         ## save for later
         f.puts @thing.to_json
       end
