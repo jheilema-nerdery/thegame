@@ -5,12 +5,18 @@ require './itemdothings'
 require './fileReadAndClearer'
 
 # /items/use/{itemid}?target={target-userid}
-# You found a bonus item! <f160599a-8d17-4b7f-b923-03866b5d3ed5> | <Roger Wilco>
+# You found a bonus item!
+# <f160599a-8d17-4b7f-b923-03866b5d3ed5> | <Roger Wilco>
+# <f8e87c0a-5d8b-447c-96c2-6f08df974353> | <Space Invaders>
+# <c4ea419c-88a7-4f99-a8e8-576cfcf5ca67> | <Hard Knuckle>
+# <dafdd972-bfe8-4d43-95b4-21042a761d98> | <Da Da Da Da Daaa Da DAA da da>
+# <10db30ce-bbd6-4f4c-8012-93d63a44feed> | <Hard Knuckle>
+# <68fb2207-aaf7-4f88-934f-a5471466c143> | <Charizard>
 
 
 API_KEY = '***REMOVED***'
 
-counter = 50
+counter = 40
 item_counter = 0
 
 Thread.new do
@@ -35,8 +41,8 @@ loop do
     unless result[:Item].nil?
       ItemThingDoer.new(result[:Item]).save
       last_item = result[:Item]
-      puts http.body_str
     end
+    puts http.body_str
 
     counter += 1
 
