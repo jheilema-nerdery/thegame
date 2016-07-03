@@ -25,14 +25,16 @@ module TheGame
         myself = { :PlayerName => 'jheilema' }
         ThingUser.new(@thing, myself).do
           # effects over time, positive
-      when "Moogle",            # *3, 30m
-            "7777",             # *7
-            "Warthog",          # *2
-            "Chocobo",          # badge
-            "Pony",             # badge
-            "Leeroy Jenkins",
-            "Cardboard Box",    # ???? (hides?)
-            "Princess"          # ?????
+      when "Moogle",                       # *3, 1/5 chance. 30m
+          "7777",                          # *7
+          "Warthog",                       # *2
+          "Rush the Dog",                  # *10, 1/8 chance. 1h. sidekick
+          "Miniature Giant Space Hamster", # *10, 1/10 chance. overwrites RtD?
+          "Chocobo",                       # badge
+          "Pony",                          # badge
+          "Leeroy Jenkins",
+          "Cardboard Box",                 # ???? (hides?)
+          "Princess"                       # ?????
         myself = { :PlayerName => 'jheilema' }
         ThingUser.new(@thing, myself).do
       when "Hard Knuckle",    # -200
@@ -42,9 +44,7 @@ module TheGame
             "Banana Peel",    # -100
             "Space Invaders", # ?????. Bypasses Tanooki Suit. 1h1m
             "Fire Flower",    # -35
-            "Pandora's Box",  #
-            "Golden Gun",     #
-            "Holy Water"      # -10 over 10 hits
+            "Holy Water"      # -10 over 10 hits (-100)
         players = PlayerFinder.find_top
         player = players[0]
         player = (player[:PlayerName] == 'jheilema') ? players[1] : player
@@ -74,7 +74,9 @@ module TheGame
         # "Charizard",      # -500
         # "Fus Ro Dah",     # silence someone
         # "Master Sword",   # minus a lot, a whole lot. more than the blue shell
-        # "Hadouken",       # -25% on gained points
+        # "Hadouken",       # -25% on gained points, 15m
+        # "Pandora's Box",  #
+        # "Golden Gun",     #
         # "Tanooki Suit",   # seems to block bonus points, other effects...?
         #
         # "Carbuncle",      # protection ?
