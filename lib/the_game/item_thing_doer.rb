@@ -37,7 +37,6 @@ module TheGame
             "Green Shell",    # -100
             "SPNKR",          # -100
             "Banana Peel",    # -100
-            "Space Invaders", # ?????. Bypasses Tanooki Suit. 1h1m
             "Fire Flower",    # -35
             "Holy Water"      # -10 over 10 hits (-100)
         players = PlayerFinder.find_top
@@ -70,6 +69,7 @@ module TheGame
         # "Golden Gun",     # huge damage, ~ 45000 when it hit colin
         # "Tanooki Suit",   # seems to block bonus points, other effects...?
         # "Bullet Bill",    # ? seems to hit other people?
+        # "Space Invaders", # ?????. Bypasses Tanooki Suit. 1h1m. disabled rn.
         #
         # "Carbuncle",      # protection ?
         # "Varia Suit",     # protection ?
