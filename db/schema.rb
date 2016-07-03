@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160703183457) do
+ActiveRecord::Schema.define(version: 20160703184943) do
 
   create_table "items", force: :cascade do |t|
     t.string   "case"
@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 20160703183457) do
     t.string   "api_id"
     t.integer  "rarity"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "used",        default: false
+    t.string   "action"
   end
 
 end
