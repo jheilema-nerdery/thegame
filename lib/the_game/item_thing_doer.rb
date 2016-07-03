@@ -1,17 +1,12 @@
 module TheGame
   class ItemThingDoer
-    def initialize(thing)
+    def initialize(thing, api)
       @thing = thing
-    end
-
-    def save
-      open('tmp/items.list', 'a') do |f|
-        f.puts @thing.to_json
-      end
+      @api = api
     end
 
     def do
-      case @thing[:Fields].first[:Name]
+      case @thing.name
         # one-time, positive
       when "UUDDLRLRBA",                    # random, 3-100?
             "Bo Jackson",                   # 7
@@ -19,10 +14,11 @@ module TheGame
             "Wedge",                        # 50
             "Biggs",                        # 50
             "Pizza",                        # 50
-            "Pokeball",                     # 35
-            "Da Da Da Da Daaa Da DAA da da" # 10
+            "Pokeball",                     # 35, bonus item
+            "Da Da Da Da Daaa Da DAA da da",# 10, bonus item
+            "Treasure Chest"                # 3 bonus items
         myself = { :PlayerName => 'jheilema' }
-        ThingUser.new(@thing, myself).do
+        ThingUser.new(@api, @thing, myself).do
           # effects over time, positive
       when #"Moogle",                       # *3, 1/5 chance. 30m
           # "7777",                          # *7
@@ -35,7 +31,7 @@ module TheGame
           "Cardboard Box",                 # ???? (hides?)
           "Princess"                       # ?????
         myself = { :PlayerName => 'jheilema' }
-        ThingUser.new(@thing, myself).do
+        ThingUser.new(@api, @thing, myself).do
       when "Hard Knuckle",    # -200
             "Buster Sword",   # 0 ?
             "Green Shell",    # -100
@@ -47,27 +43,23 @@ module TheGame
         players = PlayerFinder.find_top
         player = players[0]
         player = (player[:PlayerName] == 'jheilema') ? players[1] : player
-        ThingUser.new(@thing, player).do
+        ThingUser.new(@api, @thing, player).do
       when "Red Shell"        # -100
         players = PlayerFinder.find_top
         player = players[0]
         if (player[:PlayerName] == 'jheilema')
           #  save it for later, I'm at the top of the list and it'll just hit me
-          open('tmp/items.list', 'a') do |f|
-            f.puts @thing.to_json
-          end
+          @thing.touch
           'try the red shell again later when not in first'
         else
-          ThingUser.new(@thing, player).do
+          ThingUser.new(@api, @thing, player).do
         end
       when "Mushroom",
           "Crowbar",
           "Box of Bees",
           "Rail Gun"        # 0 ?
-        open('tmp/whatdo.list', 'a') do |f|
-          f.puts @thing.to_json
-        end
-        'what do: ' + @thing[:Fields].first[:Name]
+        @thing.touch
+        'what do: ' + @thing.name
       else
         # "Blue Shell"      # hits the #1 person for a ton, take'm down a notch
         # "Charizard",      # -500
@@ -82,11 +74,8 @@ module TheGame
         # "Carbuncle",      # protection ?
         # "Varia Suit",     # protection ?
         # "Gold Ring",      # protection ?
-        open('tmp/save.list', 'a') do |f|
-          ## save for later
-          f.puts @thing.to_json
-        end
-        'saved for later: ' + @thing[:Fields].first[:Name]
+        @thing.touch
+        'saved for later: ' + @thing.name
       end
     end
   end

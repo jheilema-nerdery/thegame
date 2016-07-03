@@ -1,41 +1,25 @@
 module TheGame
   class ThingUser
-    def initialize(thing, person = nil)
+    def initialize(api, thing, person = nil)
+      @api = api
       @thing = thing
       @person = person
     end
 
     def do
-      itemid = @thing[:Fields].first[:Id]
-      if @person.nil?
-        return do_to_nobody
-      end
-
-      player = @person[:PlayerName]
-      path = "items/use/#{itemid}?target=#{player}"
-      http = Curl.post("http://thegame.nerderylabs.com/#{path}") do |http|
-        http.headers['apikey'] = API_KEY
-      end
-
-      begin
-        JSON.parse(http.body_str, symbolize_names: true)
-      rescue JSON::ParserError
-        http.body_str
-      end
-    end
-
-    def do_to_nobody
-      itemid = @thing[:Fields].first[:Id]
+      itemid = @thing.api_id
       path = "items/use/#{itemid}"
-      http = Curl.post("http://thegame.nerderylabs.com/#{path}") do |http|
-        http.headers['apikey'] = API_KEY
+
+      result = if @person.nil?
+        @api.use(itemid)
+      else
+        @api.use_on(itemid, @person[:PlayerName])
       end
 
-      begin
-        JSON.parse(http.body_str, symbolize_names: true)
-      rescue JSON::ParserError
-        http.body_str
-      end
+      @thing.update_from(result)
+      result
     end
+
+
   end
 end
