@@ -20,15 +20,14 @@ module TheGame
             "Biggs",                        # 50
             "Pizza",                        # 50
             "Pokeball",                     # 35
-            "Bullet Bill",                  # ? seems to hit other people?
             "Da Da Da Da Daaa Da DAA da da" # 10
         myself = { :PlayerName => 'jheilema' }
         ThingUser.new(@thing, myself).do
           # effects over time, positive
-      when "Moogle",                       # *3, 1/5 chance. 30m
-          "7777",                          # *7
-          "Warthog",                       # *2
-          "Rush the Dog",                  # *10, 1/8 chance. 1h. sidekick
+      when #"Moogle",                       # *3, 1/5 chance. 30m
+          # "7777",                          # *7
+          # "Warthog",                       # *2
+          # "Rush the Dog",                  # *10, 1/8 chance. 1h. sidekick
           "Miniature Giant Space Hamster", # *10, 1/10 chance. overwrites RtD?
           "Chocobo",                       # badge
           "Pony",                          # badge
@@ -76,8 +75,9 @@ module TheGame
         # "Master Sword",   # minus a lot, a whole lot. more than the blue shell
         # "Hadouken",       # -25% on gained points, 15m
         # "Pandora's Box",  #
-        # "Golden Gun",     #
+        # "Golden Gun",     # huge damage, ~ 45000 when it hit colin
         # "Tanooki Suit",   # seems to block bonus points, other effects...?
+        # "Bullet Bill",    # ? seems to hit other people?
         #
         # "Carbuncle",      # protection ?
         # "Varia Suit",     # protection ?
