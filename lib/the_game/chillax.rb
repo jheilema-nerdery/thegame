@@ -6,7 +6,7 @@ module TheGame
     end
 
     def time_to_wait
-      7 # doesn't matter
+      77 # doesn't matter
     end
 
     def choose_item_and_player(effects=[])
