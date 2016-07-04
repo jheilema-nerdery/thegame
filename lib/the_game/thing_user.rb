@@ -20,6 +20,5 @@ module TheGame
       result
     end
 
-
   end
 end

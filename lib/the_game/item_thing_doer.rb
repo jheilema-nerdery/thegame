@@ -17,8 +17,6 @@ module TheGame
             "Pokeball",                     # 35, bonus item
             "Da Da Da Da Daaa Da DAA da da",# 10, bonus item
             "Treasure Chest"                # 3 bonus items
-        myself = { :PlayerName => 'jheilema' }
-        ThingUser.new(@api, @thing, myself).do
           # effects over time, positive
       when #"Moogle",                       # *3, 1/5 chance. 30m
           # "7777",                          # *7
@@ -27,18 +25,18 @@ module TheGame
           "Miniature Giant Space Hamster", # *10, 1/10 chance. overwrites RtD?
           "Chocobo",                       # badge
           "Pony",                          # badge
-          "Leeroy Jenkins",
           "Cardboard Box",                 # ???? (hides?)
           "Princess"                       # ?????
         myself = { :PlayerName => 'jheilema' }
         ThingUser.new(@api, @thing, myself).do
-      when "Hard Knuckle",    # -200
-            "Buster Sword",   # 0 ?
-            "Green Shell",    # -100
-            "SPNKR",          # -100
-            "Banana Peel",    # -100
-            "Fire Flower",    # -35
-            "Holy Water"      # -10 over 10 hits (-100)
+      when "Hard Knuckle",   # -200
+            "Buster Sword",  # 0 ?
+            "Green Shell",   # -100
+            "SPNKR",         # -100
+            "Banana Peel",   # -100
+            "Fire Flower",   # -35
+            "Holy Water",    # -10 over 10 hits (-100)
+            "Leeroy Jenkins" # death by log. additinal LEEROOY JENKINS battlecry
         players = PlayerFinder.find_top
         player = players[0]
         player = (player[:PlayerName] == 'jheilema') ? players[1] : player
@@ -65,11 +63,9 @@ module TheGame
         # "Fus Ro Dah",     # silence someone
         # "Master Sword",   # minus a lot, a whole lot. more than the blue shell
         # "Hadouken",       # -25% on gained points, 15m
-        # "Pandora's Box",  #
         # "Golden Gun",     # huge damage, ~ 45000 when it hit colin
         # "Tanooki Suit",   # seems to block bonus points, other effects...?
         # "Bullet Bill",    # ? seems to hit other people?
-        # "Space Invaders", # ?????. Bypasses Tanooki Suit. 1h1m. disabled rn.
         #
         # "Carbuncle",      # protection ?
         # "Varia Suit",     # protection ?

@@ -17,7 +17,30 @@ module TheGame
       post("items/use/#{item}?target=#{person}")
     end
 
+    def players
+      get('')
+    end
+
   private
+
+    def get(path)
+      url = "http://thegame.nerderylabs.com/#{path}"
+
+      response = Curl.get(url) do |http|
+        http.headers['apikey'] = @key
+        http.headers['Accept'] = 'application/json'
+      end
+      @logger.debug response.body_str
+
+      result = begin
+        JSON.parse(response.body_str, symbolize_names: true)
+      rescue JSON::ParserError
+        response.body_str
+      end
+
+      process result
+      result
+    end
 
     def post(path)
       url = "http://thegame.nerderylabs.com/#{path}"
@@ -25,7 +48,7 @@ module TheGame
       response = Curl.post(url) do |http|
         http.headers['apikey'] = @key
       end
-      @logger.info response.body_str
+      @logger.debug response.body_str
 
       result = begin
         JSON.parse(response.body_str, symbolize_names: true)
@@ -41,7 +64,7 @@ module TheGame
     def process(result)
       return if result.is_a? String
 
-      get_bonuses(result[:Messages])
+      get_bonuses(result[:Messages]) if result.is_a?(Hash)
     end
 
     # check for bonus items and save them
