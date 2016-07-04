@@ -38,7 +38,6 @@ module TheGame
     end
 
     def find_item(players, current_effects)
-      return nil
       item_types = ItemLibrary::WEAPON
 
       unless current_effects.include? "Tanooki Suit"

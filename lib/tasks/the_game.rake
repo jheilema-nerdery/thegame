@@ -31,6 +31,7 @@ namespace :the_game do
 
         unless points[:Item].nil?
           Item.from_json(points[:Item]).save
+          Rails.logger.info points
         end
 
         counter += 1
