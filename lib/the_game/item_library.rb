@@ -14,7 +14,7 @@ module TheGame
 
     EFFECT_OVER_TIME = [
       "7777",                           # *7
-      "Warthog",                        # *2
+      "Warthog",                        # *2 15m
       "Moogle",                         # *3, 1/5 chance. 30m
       "Rush the Dog",                   # *10, 1/8 chance. 1h. sidekick
       "Miniature Giant Space Hamster",  # *10, 1/10 chance. overwrites RtD?
@@ -60,23 +60,35 @@ module TheGame
       "Cardboard Box",  # ???? (hides?)
       "Varia Suit",     # 1h
       "Carbuncle",      # 5m
+      "Star",           # temporary invincibility
       "Gold Ring",      # protection ?
       "Tanooki Suit",   # blocks 3 effects
     ]
 
     UNHELPFUL = [
       "Mushroom",
+      "Leeroy Jenkins",
+      "Portal Nun",
       "Box of Bees",
-      "Morph Ball",     # Transform into a sphere that passes two players?
       "Pandora's Box",  # don't open it
       "Space Invaders", # ?????. Bypasses Tanooki Suit. 1h1m. disabled rn.
+    ]
+
+
+    SWAP_PLACES = [
+      "Get Over Here",  # Chance to cuddle up to your opponent.
+      "Morph Ball",     # Transform into a sphere that passes two players?
     ]
 
     SILENCE = [
       "Fus Ro Dah",     # silence someone
     ]
 
+    DONT_KNOW = [
+      "Leisure Suit"    # Winning this game is about as easy as holding onto a mud wrestler!
+    ]
+
     ALL = POSITIVE + EFFECT_OVER_TIME + BADGE + WEAPON + CLOSE_RANGE +
-          BIG_WEAPON + PROTECTION + UNHELPFUL + SILENCE
+          BIG_WEAPON + PROTECTION + UNHELPFUL + SILENCE + SWAP_PLACES + DONT_KNOW
   end
 end
