@@ -5,7 +5,7 @@ namespace :the_game do
     # /items/use/{itemid}?target={target-userid}
     #
     # ***REMOVED***
-    # 441f61a9-e091-477b-a16e-599bc9476fab
+    # ***REMOVED***
 
     # Setup
     API_KEY            = ENV["API_KEY"] or raise 'set your api key!'
