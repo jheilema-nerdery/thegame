@@ -9,8 +9,7 @@ module TheGame
       60
     end
 
-    def choose_item_and_player(current_effects = [])
-      players = @api.players
+    def choose_item_and_player(current_effects = [], players)
       item = find_item(players, current_effects)
 
       return [] if item.nil?

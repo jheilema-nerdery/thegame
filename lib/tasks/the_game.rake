@@ -38,7 +38,8 @@ namespace :the_game do
         if counter >= strategy.time_to_wait
           counter = 0
           Rails.logger.debug "Effects: #{points[:Effects]}"
-          thing, player = strategy.choose_item_and_player(points[:Effects])
+          players = api.players
+          thing, player = strategy.choose_item_and_player(points[:Effects], players)
 
           if thing && player
             Rails.logger.info "====== using an item ========"

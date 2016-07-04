@@ -9,7 +9,7 @@ module TheGame
       77 # doesn't matter
     end
 
-    def choose_item_and_player(effects=[])
+    def choose_item_and_player(effects=[], players)
       []
     end
   end
