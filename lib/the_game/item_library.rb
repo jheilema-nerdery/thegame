@@ -26,6 +26,7 @@ module TheGame
       "Fat Guys",
       "Skinny Guys",
       "Roger Wilco",
+      "Zelda Cartridge",
     ]
 
     PROTECTION = [
