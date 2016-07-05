@@ -7,7 +7,6 @@ module TheGame
 
     def points
       post('points')
-          Rails.logger.debug points
       {:Messages=>["sbausch gained 1 points! Total points: 38"], :Item=>nil, :Points=>38, :Effects=>[], :Badges=>[]}
     end
 
@@ -23,7 +22,13 @@ module TheGame
 
     def players
       post("/")
-      []
+      [
+        {:PlayerName=>"bliset", :AvatarUrl=>"https://lh6.googleusercontent.com/photo.jpg", :Points=>90829, :Title=>"", :Effects=>["Hadouken", "Moogle"], :Badges=>[{:BadgeName=>"Pony"}, {:BadgeName=>"Skinny Guys"}, {:BadgeName=>"Chocobo"}, {:BadgeName=>"Plunger"}]},
+        {:PlayerName=>"wkallhof", :AvatarUrl=>"https://lh4.googleusercontent.com/photo.jpg", :Points=>90761, :Title=>"", :Effects=>["Slow", "Hadouken"], :Badges=>[{:BadgeName=>"Skinny Guys"}, {:BadgeName=>"Plunger"}, {:BadgeName=>"Simon's Quest Badge"}]},
+        {:PlayerName=>"meastes", :AvatarUrl=>"https://lh6.googleusercontent.com/--8IpHzOwVmY/AAAAAAAAAAI/AAAAAAAAAC8/d2u1Ywr4gks/photo.jpg", :Points=>88567, :Title=>"", :Effects=>[], :Badges=>[{:BadgeName=>"Skinny Guys"}, {:BadgeName=>"Pony"}, {:BadgeName=>"Chocobo"}]},
+        {:PlayerName=>"nhotalli", :AvatarUrl=>"https://lh3.googleusercontent.com/photo.jpg", :Points=>81255, :Title=>"", :Effects=>["Hadouken", "Moogle"], :Badges=>[{:BadgeName=>"Chocobo"}, {:BadgeName=>"Simon's Quest Badge"}, {:BadgeName=>"Pony"}, {:BadgeName=>"Skinny Guys"}, {:BadgeName=>"Fat Guys"}, {:BadgeName=>"Plunger"}]},
+        {:PlayerName=>"revans", :AvatarUrl=>"https://lh4.googleusercontent.com/photo.jpg", :Points=>81226, :Title=>"", :Effects=>[], :Badges=>[{:BadgeName=>"Simon's Quest Badge"}, {:BadgeName=>"Plunger"}, {:BadgeName=>"Pony"}]}
+      ]
     end
 
   private

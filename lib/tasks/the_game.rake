@@ -27,14 +27,15 @@ namespace :the_game do
 
     loop do
       begin
+        counter += 1
         points = api.points
+        sleep 1
 
         unless points[:Item].nil?
           Item.from_json(points[:Item]).save
           Rails.logger.info points
         end
 
-        counter += 1
         if counter >= strategy.time_to_wait
           counter = 0
           Rails.logger.debug "Effects: #{points[:Effects]}"
@@ -51,8 +52,6 @@ namespace :the_game do
             Rails.logger.info "====== no item chosen ========"
           end
         end
-
-        sleep 1
       rescue Curl::Err::RecvError
         Rails.logger.error "*"*20 + '  Rescuing from a timeout  ' + "*"*20
         sleep 120
