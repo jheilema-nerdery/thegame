@@ -59,6 +59,7 @@ namespace :the_game do
           "#{e.class} : #{e.message}  " +
           "*"*20
         sleep 30
+        counter += 30
       end
     end
 
