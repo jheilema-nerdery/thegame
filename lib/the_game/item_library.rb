@@ -27,6 +27,7 @@ module TheGame
       "Skinny Guys",
       "Roger Wilco",
       "Zelda Cartridge",
+      "Triforce of Wisdom",
     ]
 
     PROTECTION = [
