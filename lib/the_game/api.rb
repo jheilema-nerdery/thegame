@@ -29,6 +29,7 @@ module TheGame
       response = Curl.get(url) do |http|
         http.headers['apikey'] = @key
         http.headers['Accept'] = 'application/json'
+        http.timeout = 10
       end
       @logger.debug response.body_str
 
@@ -46,6 +47,7 @@ module TheGame
       url = "http://thegame.nerderylabs.com/#{path}"
 
       response = Curl.post(url) do |http|
+        http.timeout = 15
         http.headers['apikey'] = @key
       end
       @logger.debug response.body_str
