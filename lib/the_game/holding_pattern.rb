@@ -15,7 +15,7 @@ module TheGame
       return [] if item.nil?
       @logger.debug "#{item.name} chosen"
 
-      if ItemLibrary::POSITIVE.include? item.name
+      if ItemLibrary::ALL_POSITIVE.include? item.name
         @logger.debug "Applying #{item.name} to me"
         return item, { :PlayerName => 'jheilema' }
       end

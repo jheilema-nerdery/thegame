@@ -29,6 +29,22 @@ module TheGame
       "Roger Wilco",
     ]
 
+    PROTECTION = [
+      "Cardboard Box",  # ???? (hides?)
+      "Varia Suit",     # 1h
+      "Carbuncle",      # 5m
+      "Star",           # temporary invincibility
+      "Gold Ring",      # protection ?
+      "Tanooki Suit",   # blocks 3 effects
+    ]
+
+    SWAP_PLACES = [
+      "Get Over Here",  # Chance to cuddle up to your opponent.
+      "Morph Ball",     # Transform into a sphere that passes two players?
+    ]
+
+    ALL_POSITIVE = POSITIVE + EFFECT_OVER_TIME + BADGE + PROTECTION + SWAP_PLACES
+
     WEAPON = [
       "Hadouken",       # -25% on gained points, 15m. ~225 at base rate
       "Hard Knuckle",   # -200
@@ -56,15 +72,6 @@ module TheGame
       "Red Crystal",    # ?
     ]
 
-    PROTECTION = [
-      "Cardboard Box",  # ???? (hides?)
-      "Varia Suit",     # 1h
-      "Carbuncle",      # 5m
-      "Star",           # temporary invincibility
-      "Gold Ring",      # protection ?
-      "Tanooki Suit",   # blocks 3 effects
-    ]
-
     UNHELPFUL = [
       "Mushroom",
       "Leeroy Jenkins",
@@ -72,12 +79,6 @@ module TheGame
       "Box of Bees",
       "Pandora's Box",  # don't open it
       "Space Invaders", # ?????. Bypasses Tanooki Suit. 1h1m. disabled rn.
-    ]
-
-
-    SWAP_PLACES = [
-      "Get Over Here",  # Chance to cuddle up to your opponent.
-      "Morph Ball",     # Transform into a sphere that passes two players?
     ]
 
     SILENCE = [
