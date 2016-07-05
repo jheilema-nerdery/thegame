@@ -53,8 +53,11 @@ namespace :the_game do
             Rails.logger.info "====== no item chosen ========"
           end
         end
-      rescue Curl::Err::RecvError, Curl::Err::ConnectionFailedError
-        Rails.logger.error "*"*20 + '  Rescuing from a timeout  ' + "*"*20
+      rescue Curl::Err::CurlError => e
+        Rails.logger.error "*"*20 +
+          '  Rescuing from a curl error  ' +
+          e + '  ' +
+          "*"*20
         sleep 30
       end
     end
