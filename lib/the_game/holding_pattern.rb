@@ -20,7 +20,7 @@ module TheGame
         return item, { :PlayerName => 'jheilema' }
       end
 
-      player = players.find {|p| not_me(p) && no_sheild(p) }
+      player = players.find {|p| not_me(p) && no_sheild(p) && not_stacking(item, p) }
       @logger.debug "Player '#{player[:PlayerName]}' chosen"
 
       return item, player
@@ -34,6 +34,10 @@ module TheGame
 
     def no_sheild(p)
       (p[:Effects] & TheGame::ItemLibrary::PROTECTION).empty?
+    end
+
+    def not_stacking(item, p)
+      !p[:Effects].include?(item.name)
     end
 
     def find_item(players, current_effects)
