@@ -55,8 +55,8 @@ namespace :the_game do
         end
       rescue Curl::Err::CurlError => e
         Rails.logger.error "*"*20 +
-          '  Rescuing from a curl error  ' +
-          e + '  ' +
+          '  Rescuing from a curl error, **** ' +
+          "#{e.class} : #{e.message}  " +
           "*"*20
         sleep 30
       end
