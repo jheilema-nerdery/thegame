@@ -9,7 +9,6 @@ module TheGame
       "Pokeball",                        # 35, bonus item
       "Da Da Da Da Daaa Da DAA da da",   # 10, bonus item
       "Treasure Chest",                  # 3 bonus items
-      "Bo Jackson",                      # 7
     ]
 
     EFFECT_OVER_TIME = [
@@ -77,6 +76,7 @@ module TheGame
       "Leeroy Jenkins",
       "Portal Nun",
       "Box of Bees",
+      "Bo Jackson",     # 7
       "Pandora's Box",  # don't open it
       "Space Invaders", # ?????. Bypasses Tanooki Suit. 1h1m. disabled rn.
     ]
@@ -86,6 +86,8 @@ module TheGame
     ]
 
     DONT_KNOW = [
+      "Portal Gun",     # The cake is a lie!
+      "Princess",       # A kiss from her majesty that turns a frog into her prince.
       "Leisure Suit"    # Winning this game is about as easy as holding onto a mud wrestler!
     ]
 
