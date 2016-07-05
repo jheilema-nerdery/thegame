@@ -5,7 +5,7 @@ module TheGame
       @key = key
     end
 
-    def points
+    def tick
       post('points')
     end
 

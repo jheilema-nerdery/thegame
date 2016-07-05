@@ -28,19 +28,20 @@ namespace :the_game do
     loop do
       begin
         counter += 1
-        points = api.points
+        turn = api.tick
         sleep 1
 
-        unless points[:Item].nil?
-          Item.from_json(points[:Item]).save
-          Rails.logger.info points
+        unless turn[:Item].nil?
+          Item.from_json(turn[:Item]).save
+          Rails.logger.info turn
         end
 
         if counter >= strategy.time_to_wait
           counter = 0
-          Rails.logger.debug "Effects: #{points[:Effects]}"
+          Rails.logger.debug "Effects: #{turn[:Effects]}"
+
           players = api.players
-          thing, player = strategy.choose_item_and_player(points[:Effects], players)
+          thing, player = strategy.choose_item_and_player(turn[:Effects], players)
 
           if thing && player
             Rails.logger.info "====== using an item ========"

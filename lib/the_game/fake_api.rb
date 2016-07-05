@@ -5,19 +5,19 @@ module TheGame
       @key = key
     end
 
-    def points
+    def tick
       post('points')
-      {:Messages=>["sbausch gained 1 points! Total points: 38"], :Item=>nil, :Points=>38, :Effects=>[], :Badges=>[]}
+      {:Messages=>["jheilema gained 1 points! Total points: 38"], :Item=>nil, :Points=>38, :Effects=>[], :Badges=>[]}
     end
 
     def use(item)
       post("items/use/#{item}")
-      {}
+      {:Messages=>["You used <SPNKR> on jheilema; -100 points for jheilema!"], :TargetName=>"jheilema", :Points=>29323}
     end
 
     def use_on(item, person)
       post("items/use/#{item}?target=#{person}")
-      {}
+      {:Messages=>["You used <SPNKR> on jmullin; -100 points for jmullin!"], :TargetName=>"jmullin", :Points=>29323}
     end
 
     def players

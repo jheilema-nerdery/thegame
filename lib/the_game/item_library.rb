@@ -13,8 +13,8 @@ module TheGame
     ]
 
     EFFECT_OVER_TIME = [
-      "7777",                           # *7
-      "Warthog",                        # *2 15m
+      "7777",                           # *7, 7m
+      "Warthog",                        # *2, 15m
       "Moogle",                         # *3, 1/5 chance. 30m
       "Rush the Dog",                   # *10, 1/8 chance. 1h. sidekick
       "Miniature Giant Space Hamster",  # *10, 1/10 chance. overwrites RtD?
