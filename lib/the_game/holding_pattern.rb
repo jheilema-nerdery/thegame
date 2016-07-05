@@ -48,7 +48,7 @@ module TheGame
 
         # try to stay in the top 10
         if players.none?{|p| p[:PlayerName] == 'jheilema'}
-          item_types = item_types + ItemLibrary::EFFECT_OVER_TIME - '7777'
+          item_types = item_types + ItemLibrary::EFFECT_OVER_TIME - ['7777']
         end
       end
 
