@@ -52,6 +52,7 @@ module TheGame
       "Buster Sword",   # -500
       "Charizard",      # -500
       "Hadouken",       # -25% on gained points, 15m. ~225 at base rate
+                        # plus additional YOU GOT BURNED (%?)
       "Hard Knuckle",   # -200
       "Green Shell",    # -100
       "SPNKR",          # -100

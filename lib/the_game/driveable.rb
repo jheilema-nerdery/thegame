@@ -17,7 +17,7 @@ module TheGame
         item = Item.unused.oldest.where(name: job.item_name).first
         job.delete if item
       end
-      return [item, target] if job && item
+      return [item, target] if item
       []
     end
 
