@@ -6,6 +6,9 @@ namespace :the_game do
     #
     # ***REMOVED***
     # ***REMOVED***
+    # ***REMOVED***
+    # ***REMOVED***
+    #
 
     # Setup
     API_KEY            = ENV["API_KEY"] or raise 'set your api key!'
