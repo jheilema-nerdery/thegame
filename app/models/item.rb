@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
   scope :used,   ->{ where(used: true) }
   scope :oldest, ->{ order(:updated_at) }
   scope :newest, ->{ order(:updated_at => :desc) }
+  scope :named,  ->(name){ where(name: name) }
 
   def self.from_json(json_data)
     fields = json_data[:Fields][0]
