@@ -18,6 +18,7 @@ module TheGame
       "Rush the Dog",                   # *10, 1/8 chance. 1h. sidekick
       "Miniature Giant Space Hamster",  # *10, 1/10 chance. overwrites RtD?
                                         # possibly has other interactions
+      "Mushroom",                       # 50% chance for *0.5 or *2, 5m
     ]
 
     BADGE = [
@@ -28,6 +29,7 @@ module TheGame
       "Roger Wilco",
       "Zelda Cartridge",
       "Triforce of Wisdom",
+      "Ocarina of Time",
     ]
 
     PROTECTION = [
@@ -74,7 +76,6 @@ module TheGame
     ]
 
     UNHELPFUL = [
-      "Mushroom",
       "Leeroy Jenkins",
       "Portal Nun",
       "Box of Bees",
@@ -84,13 +85,17 @@ module TheGame
     ]
 
     SILENCE = [
-      "Fus Ro Dah",     # silence someone
+      "Fus Ro Dah",     # silence someone, 5m
     ]
 
     DONT_KNOW = [
-      "Portal Gun",     # The cake is a lie!
-      "Princess",       # A kiss from her majesty that turns a frog into her prince.
-      "Leisure Suit"    # Winning this game is about as easy as holding onto a mud wrestler!
+      "Portal Gun",           # The cake is a lie!
+      "Princess",             # kiss from her majesty turns frog into prince
+      "Goomba",               # Angry round monster. rarity 4
+      "Power Pellet: Inky",   # trolling. rarity 4
+      "Cthulhu",              # effs with your messages
+      "Leisure Suit"          # Winning this game is about as easy as holding
+                              # onto a mud wrestler!
     ]
 
     ALL = POSITIVE + EFFECT_OVER_TIME + BADGE + WEAPON + CLOSE_RANGE +
