@@ -1,6 +1,8 @@
 class Item < ActiveRecord::Base
   scope :unused, ->{ where(used: false) }
+  scope :used,   ->{ where(used: true) }
   scope :oldest, ->{ order(:updated_at) }
+  scope :newest, ->{ order(:updated_at => :desc) }
 
   def self.from_json(json_data)
     fields = json_data[:Fields][0]
