@@ -49,6 +49,8 @@ module TheGame
     ALL_POSITIVE = POSITIVE + EFFECT_OVER_TIME + BADGE + PROTECTION + SWAP_PLACES
 
     WEAPON = [
+      "Buster Sword",   # -500
+      "Charizard",      # -500
       "Hadouken",       # -25% on gained points, 15m. ~225 at base rate
       "Hard Knuckle",   # -200
       "Green Shell",    # -100
@@ -70,8 +72,6 @@ module TheGame
       "Master Sword",   # minus a lot, a whole lot. more than blue shell
       "Golden Gun",     # huge damage, ~ 45000 when it hit colin
       "Bullet Bill",    # ? seems to hit other people?
-      "Charizard",      # -500
-      "Buster Sword",   # -500
       "Red Crystal",    # "Simon's quest" badge
     ]
 
