@@ -68,14 +68,15 @@ module TheGame
     end
 
     def positive_effects
-      positive_items = ItemLibrary::POSITIVE + ['Mushroom'] # why not
+      positive_items = ItemLibrary::POSITIVE
+      positive_items += ['Mushroom'] unless @effects.include?('Mushroom') # why not
 
       # try to stay in the top 10    # but don't use too many items
       if !in_top_ten?('jheilema') && less_than_3_multipliers
         nice_effects = ItemLibrary::EFFECT_OVER_TIME -
                       ['7777'] -  # not the fanciest one
                       @effects    # not any that we already have
-        positive_items = positive_items + nice_effects
+        positive_items += nice_effects
       end
 
       positive_items
