@@ -26,14 +26,16 @@ module TheGame
       "Fat Guys",
       "Skinny Guys",
       "Roger Wilco",
+      "Nintendo Controller",
       "Zelda Cartridge",
       "Triforce of Wisdom",
       "Ocarina of Time",
+      "Triforce Of Courage",
     ]
 
     PROTECTION = [
       "Cardboard Box",  # ???? (hides?)
-      "Varia Suit",     # 1h
+      "Varia Suit",     # 1h. Holy water, Master sword gets through
       "Carbuncle",      # 5m
       "Star",           # temporary invincibility
       "Gold Ring",      # protection, 3m - blocks bo jackson... others?
@@ -53,13 +55,13 @@ module TheGame
       "Hadouken",       # -25% on gained points, 15m. ~225 at base rate
                         # plus additional YOU GOT BURNED (%?)
       "Hard Knuckle",   # -200
+      "Holy Water",     # -10 over 10 hits (-100)
     ]
 
     PRICK = [
       "Green Shell",    # -100
       "SPNKR",          # -100
       "Banana Peel",    # -100
-      "Holy Water",     # -10 over 10 hits (-100)
       "Fire Flower",    # -35
       "Rail Gun",       # 0 ?
     ]
@@ -93,6 +95,7 @@ module TheGame
     ]
 
     DONT_KNOW = [
+      "Jigglypuff",           # Points for cuteness.
       "Portal Gun",           # The cake is a lie!
       "Princess",             # kiss from her majesty turns frog into prince
       "Goomba",               # Angry round monster. rarity 4
