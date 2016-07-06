@@ -18,7 +18,6 @@ module TheGame
       "Rush the Dog",                   # *10, 1/8 chance. 1h. sidekick
       "Miniature Giant Space Hamster",  # *10, 1/10 chance. overwrites RtD?
                                         # possibly has other interactions
-      "Mushroom",                       # 50% chance for *0.5 or *2, 5m
     ]
 
     BADGE = [
@@ -77,7 +76,8 @@ module TheGame
     ]
 
     UNHELPFUL = [
-      "Leeroy Jenkins",
+      "Mushroom",       # 50% chance for *0.5 or *2, 5m
+      "Leeroy Jenkins", # adds a battle yell
       "Portal Nun",
       "Box of Bees",
       "Bo Jackson",     # 7

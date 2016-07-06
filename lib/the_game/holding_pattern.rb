@@ -69,7 +69,6 @@ module TheGame
 
     def positive_effects
       positive_items = ItemLibrary::POSITIVE
-      positive_items += ['Mushroom'] unless @effects.include?('Mushroom') # why not
 
       # try to stay in the top 10    # but don't use too many items
       if !in_top_ten?('jheilema') && less_than_3_multipliers
