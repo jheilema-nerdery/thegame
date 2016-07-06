@@ -20,7 +20,7 @@ module TheGame
       ]
 
       strategies.each do |strat|
-        result = strat.choose_item_and_player(effects, players)
+        result = strat.new(@logger, @api).choose_item_and_player(effects, players)
         return result unless result.empty? # break on the first one
       end
       []
