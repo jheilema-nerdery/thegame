@@ -2,13 +2,6 @@ namespace :the_game do
   desc "Do things"
   task points: :environment do
 
-    # /items/use/{itemid}?target={target-userid}
-    #
-    # ***REMOVED***
-    # ***REMOVED***
-    # ***REMOVED***
-    # ***REMOVED***
-    #
 
     # Setup
     API_KEY            = ENV["API_KEY"] or raise 'set your api key!'
