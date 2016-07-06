@@ -72,7 +72,7 @@ module TheGame
       "Bullet Bill",    # ? seems to hit other people?
       "Charizard",      # -500
       "Buster Sword",   # -500
-      "Red Crystal",    # ?
+      "Red Crystal",    # "Simon's quest" badge
     ]
 
     UNHELPFUL = [
