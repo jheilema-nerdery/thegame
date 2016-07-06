@@ -21,7 +21,13 @@ module TheGame
         item = Item.unused.oldest.where(name: job.item_name).first
         job.delete if item
       end
-      return [item, target] if item
+
+      if item
+        # record the player status so we can figure out what works
+        @logger.info players.find{|p| p[:PlayerName] == target }
+        return [item, target]
+      end
+
       []
     end
 
