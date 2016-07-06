@@ -71,10 +71,11 @@ module TheGame
 
     # check for bonus items and save them
     def get_bonuses(messages)
+      regex = /<([\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})> \| <([\w ]*)>/
       # {:Messages=>["You used <Da Da Da Da Daaa Da DAA da da> on jheilema; 10 points for jheilema!", "You found a bonus item! <c4ea419c-88a7-4f99-a8e8-576cfcf5ca67> | <Hard Knuckle>"], :TargetName=>"jheilema", :Points=>23807}
-      bonuses = messages.select {|m| m =~ /^You found a bonus item/ }
+      bonuses = messages.select {|m| m =~ regex }
       bonuses.each do |bonus_message|
-        matches = bonus_message.match(/<([\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})> \| <([\w ]*)>/).captures
+        matches = bonus_message.match(regex).captures
         Item.create(api_id: matches[0], name: matches[1])
       end
 
