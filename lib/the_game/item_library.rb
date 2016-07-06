@@ -37,7 +37,7 @@ module TheGame
       "Varia Suit",     # 1h
       "Carbuncle",      # 5m
       "Star",           # temporary invincibility
-      "Gold Ring",      # protection ?
+      "Gold Ring",      # protection, 3m
       "Tanooki Suit",   # blocks 3 effects
     ]
 
