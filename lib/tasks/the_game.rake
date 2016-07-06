@@ -33,7 +33,6 @@ namespace :the_game do
         end
 
         if counter >= strategy.time_to_wait
-          counter = 0
           Rails.logger.debug "Effects: #{turn[:Effects]}"
 
           players = api.players
@@ -45,8 +44,14 @@ namespace :the_game do
             result = TheGame::ThingUser.new(api, thing, player).do
 
             Rails.logger.info result
+            if result.is_a? String
+              counter -= strategy.try_again_in
+            else
+              counter = 0
+            end
           else
             Rails.logger.info "====== no item chosen ========"
+            counter -= strategy.try_again_in
           end
         end
       rescue Curl::Err::CurlError => e

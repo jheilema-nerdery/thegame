@@ -36,7 +36,7 @@ module TheGame
       "Varia Suit",     # 1h
       "Carbuncle",      # 5m
       "Star",           # temporary invincibility
-      "Gold Ring",      # protection, 3m
+      "Gold Ring",      # protection, 3m - blocks bo jackson... others?
       "Tanooki Suit",   # blocks 3 effects
     ]
 

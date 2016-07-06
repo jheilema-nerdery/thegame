@@ -11,6 +11,10 @@ module TheGame
       60
     end
 
+    def try_again_in
+      5
+    end
+
     def choose_item_and_player(current_effects = [], players)
       @players = players
       @effects = current_effects

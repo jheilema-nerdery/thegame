@@ -9,6 +9,10 @@ module TheGame
       420 # doesn't matter
     end
 
+    def try_again_in
+      420
+    end
+
     def choose_item_and_player(effects=[], players)
       []
     end
