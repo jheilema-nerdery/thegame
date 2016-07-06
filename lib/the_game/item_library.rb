@@ -53,6 +53,9 @@ module TheGame
       "Hadouken",       # -25% on gained points, 15m. ~225 at base rate
                         # plus additional YOU GOT BURNED (%?)
       "Hard Knuckle",   # -200
+    ]
+
+    PRICK = [
       "Green Shell",    # -100
       "SPNKR",          # -100
       "Banana Peel",    # -100
@@ -99,7 +102,8 @@ module TheGame
                               # onto a mud wrestler!
     ]
 
-    ALL = POSITIVE + EFFECT_OVER_TIME + BADGE + WEAPON + CLOSE_RANGE +
-          BIG_WEAPON + PROTECTION + UNHELPFUL + SILENCE + SWAP_PLACES + DONT_KNOW
+    ALL = POSITIVE + EFFECT_OVER_TIME + BADGE + WEAPON + PRICK +
+      CLOSE_RANGE + BIG_WEAPON + PROTECTION + UNHELPFUL + SILENCE +
+      SWAP_PLACES + DONT_KNOW
   end
 end
