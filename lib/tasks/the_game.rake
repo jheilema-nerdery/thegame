@@ -10,7 +10,7 @@ namespace :the_game do
 
     api_class = ENV["API_HANDLER"] ? ENV["API_HANDLER"].constantize : TheGame::Api
     api       = api_class.new(Rails.logger, API_KEY)
-    strategy_class  = ENV["STRATEGY"] ? ENV["STRATEGY"].constantize : TheGame::HoldingPattern
+    strategy_class  = ENV["STRATEGY"] ? ENV["STRATEGY"].constantize : TheGame::Flexible
     strategy  = strategy_class.new(Rails.logger, api)
     counter   = 40
 
