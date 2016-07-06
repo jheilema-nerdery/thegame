@@ -48,7 +48,7 @@ namespace :the_game do
 
           if thing && player
             Rails.logger.info "====== using an item ========"
-            Rails.logger.debug "ThingUser.new(#{api.class}, #{thing.name} #{thing.api_id}, #{player[:PlayerName]}).do"
+            Rails.logger.debug "ThingUser.new(#{api.class}, #{thing.name} #{thing.api_id}, #{player}).do"
             result = TheGame::ThingUser.new(api, thing, player).do
 
             Rails.logger.info result

@@ -8,12 +8,11 @@ module TheGame
 
     def do
       itemid = @thing.api_id
-      path = "items/use/#{itemid}"
 
       result = if @person.nil?
         @api.use(itemid)
       else
-        @api.use_on(itemid, @person[:PlayerName])
+        @api.use_on(itemid, @person)
       end
 
       @thing.update_from(result)

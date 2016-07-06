@@ -22,13 +22,13 @@ module TheGame
 
       if ItemLibrary::ALL_POSITIVE.include? item.name
         @logger.debug "Applying #{item.name} to me"
-        return item, { :PlayerName => 'jheilema' }
+        return item, 'jheilema'
       end
 
       player = @players.find {|p| not_me(p) && no_sheild(p) && not_stacking(item, p) }
       @logger.debug "Player '#{player[:PlayerName]}' chosen"
 
-      return item, player
+      return item, player[:PlayerName]
     end
 
   private
