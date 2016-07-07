@@ -36,13 +36,14 @@ module TheGame
     PROTECTION = [
       "Cardboard Box",  # ???? (hides?)
       "Varia Suit",     # 1h. Holy water, Master sword gets through
-      "Carbuncle",      # 5m
-      "Star",           # temporary invincibility
+      "Carbuncle",      # 5m "reflects" damage (inverts it? O_o)
+      "Star",           # 5m temporary invincibility
       "Gold Ring",      # protection, 3m - blocks bo jackson... others?
       "Tanooki Suit",   # blocks 3 effects
     ]
 
     SWAP_PLACES = [
+      "Bullet Bill",    # Move up a few people. Stop hitting yourself.
       "Get Over Here",  # Chance to cuddle up to your opponent.
       "Morph Ball",     # Transform into a sphere that passes two players?
     ]
@@ -72,11 +73,10 @@ module TheGame
                         # If you're in front, it hits you.
     ]
 
-    BIG_WEAPON = [
+    BIG_GUN = [
       "Blue Shell",     # hits the #1 person for a ton, take'm down a notch
       "Master Sword",   # minus a lot, a whole lot. more than blue shell
       "Golden Gun",     # huge damage, ~ 45000 when it hit colin
-      "Bullet Bill",    # ? seems to hit other people?
       "Red Crystal",    # "Simon's quest" badge
     ]
 
