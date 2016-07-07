@@ -23,11 +23,16 @@ namespace :the_game do
 
     loop do
       begin
-        counter += 1
         turn = api.tick
+        counter += 1
         sleep 1
 
-        unless turn[:Item].nil?
+        unless turn.is_a?(Hash)
+          Rails.logger.info turn
+          next
+        end
+
+        if turn.is_a?(Hash) && !turn[:Item].nil?
           Item.from_json(turn[:Item]).save
           Rails.logger.info turn
         end
