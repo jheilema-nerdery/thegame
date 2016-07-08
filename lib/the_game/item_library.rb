@@ -26,11 +26,14 @@ module TheGame
       "Fat Guys",
       "Skinny Guys",
       "Roger Wilco",
+      "Power Pellet: Inky",   # trolling. rarity 4
+      "Power Pellet: Blinky",
       "Nintendo Controller",
       "Zelda Cartridge",
       "Triforce of Wisdom",
-      "Ocarina of Time",
+      "Triforce of Power",
       "Triforce Of Courage",
+      "Ocarina of Time",
     ]
 
     PROTECTION = [
@@ -99,7 +102,6 @@ module TheGame
       "Portal Gun",           # The cake is a lie!
       "Princess",             # kiss from her majesty turns frog into prince
       "Goomba",               # Angry round monster. rarity 4
-      "Power Pellet: Inky",   # trolling. rarity 4
       "Cthulhu",              # effs with your messages
       "Leisure Suit"          # Winning this game is about as easy as holding
                               # onto a mud wrestler!
