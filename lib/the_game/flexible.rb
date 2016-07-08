@@ -5,22 +5,24 @@ module TheGame
       @api = api
     end
 
-    def time_to_wait
-      60
+    def use_items?
+      true
     end
 
     def try_again_in
-      55
+      10
     end
 
-    def choose_item_and_player(effects=[], players)
+    def choose_item_and_player(effects, players, points)
       strategies = [
-        Driveable,
-        HoldingPattern
+        'TheGame::Driveable',
+        'TheGame::HoldingPattern'
       ]
 
+
       strategies.each do |strat|
-        result = strat.new(@logger, @api).choose_item_and_player(effects, players)
+        strategy = strat.constantize.new(@logger, @api)
+        result = strategy.choose_item_and_player(effects, players, points)
         return result unless result.empty? # break on the first one
       end
       []

@@ -7,15 +7,15 @@ module TheGame
       @effects = []
     end
 
-    def time_to_wait
-      60
+    def use_items?
+      true
     end
 
     def try_again_in
       5
     end
 
-    def choose_item_and_player(current_effects = [], players)
+    def choose_item_and_player(current_effects = [], players, points)
       @players = players
       @effects = current_effects
 

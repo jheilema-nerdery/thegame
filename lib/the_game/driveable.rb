@@ -5,15 +5,15 @@ module TheGame
       @api = api
     end
 
-    def time_to_wait
-      60
+    def use_items?
+      true
     end
 
     def try_again_in
       10
     end
 
-    def choose_item_and_player(current_effects = [], players)
+    def choose_item_and_player(current_effects = [], players, points)
       job = Job.oldest.first
       if job
         @logger.debug '-'*20 + "  Job Found: #{job.item_name} for #{job.target}  " + '-'*20

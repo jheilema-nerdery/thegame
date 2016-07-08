@@ -7,15 +7,11 @@ module TheGame
       @effects = []
     end
 
-    def time_to_wait
-      60
-    end
-
     def try_again_in
       10
     end
 
-    def choose_item_and_player(current_effects = [], players)
+    def choose_item_and_player(current_effects = [], players, points)
       @players = players
 
       player = @players.find {|p| not_me(p) && has_tanooki_suit(p) }

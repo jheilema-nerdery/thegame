@@ -5,15 +5,15 @@ module TheGame
       @api = api
     end
 
-    def time_to_wait
-      420 # doesn't matter
+    def use_items?
+      false
     end
 
     def try_again_in
       420
     end
 
-    def choose_item_and_player(effects=[], players)
+    def choose_item_and_player(effects=[], players, points)
       []
     end
   end

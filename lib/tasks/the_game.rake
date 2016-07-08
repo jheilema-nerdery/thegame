@@ -1,18 +1,16 @@
 namespace :the_game do
+
   desc "Do things"
   task points: :environment do
-
-
     # Setup
     API_KEY            = ENV["API_KEY"] or raise 'set your api key!'
     Rails.logger       = ENV["DEBUG"] ? Logger.new(STDOUT) : Rails.logger
     Rails.logger.level = ENV["DEBUG"] ? 0 : 1
 
-    api_class = ENV["API_HANDLER"] ? ENV["API_HANDLER"].constantize : TheGame::Api
-    api       = api_class.new(Rails.logger, API_KEY)
-    strategy_class  = ENV["STRATEGY"] ? ENV["STRATEGY"].constantize : TheGame::Flexible
-    strategy  = strategy_class.new(Rails.logger, api)
-    counter   = 40
+    api         = TheGame::Api.new(Rails.logger, API_KEY)
+    strat_class = ENV["STRATEGY"] ? ENV["STRATEGY"].constantize : TheGame::Flexible
+    strategy    = strat_class.new(Rails.logger, api)
+    attack_time = Time.now + 30.seconds
 
     # allow Ctrl+C to quit
     Thread.new do
@@ -21,54 +19,74 @@ namespace :the_game do
       end
     end
 
-    loop do
-      begin
-        turn = api.tick
-        counter += 1
-        sleep 1
-
-        unless turn.is_a?(Hash)
-          Rails.logger.info turn
-          next
-        end
-
-        if turn.is_a?(Hash) && !turn[:Item].nil?
-          Item.from_json(turn[:Item]).save
-          Rails.logger.info turn
-        end
-
-        if counter >= strategy.time_to_wait
-          Rails.logger.debug "Effects: #{turn[:Effects]}"
-
-          players = api.players
-          thing, player = strategy.choose_item_and_player(turn[:Effects], players)
-
-          if thing && player
-            Rails.logger.info "====== using an item ========"
-            Rails.logger.debug "ThingUser.new(#{api.class}, #{thing.name} #{thing.api_id}, #{player}).do"
-            result = TheGame::ThingUser.new(api, thing, player).do
-
-            Rails.logger.info result
-            if result.is_a? String
-              counter -= strategy.try_again_in
-            else
-              counter = 0
-            end
-          else
-            Rails.logger.info "====== no item chosen ========"
-            counter -= strategy.try_again_in
+    if strategy.use_items?
+      Thread.new do
+        loop do
+          sleep 0.32
+          if Time.now > (attack_time)
+            attack_time = attack!(api, strategy)
           end
         end
-      rescue Curl::Err::CurlError => e
-        Rails.logger.error "*"*20 +
-          '  Rescuing from a curl error, **** ' +
-          "#{e.class} : #{e.message}  " +
-          "*"*20
-        sleep 30
-        counter += 30
       end
     end
 
+    loop do
+      turn = api.tick
+      sleep handle_turn(turn)
+    end
+  end
+
+  def attack!(api, strategy)
+    players = api.players
+    if errors?(players)
+      return Time.now + strategy.try_again_in.seconds
+    end
+
+    jen = api.jen
+    if errors?(jen)
+      return Time.now + strategy.try_again_in.seconds
+    end
+
+    Rails.logger.debug "====== Players, Jen Found - #{strategy.class}  ======"
+
+    thing, player = strategy.choose_item_and_player(jen[:Effects], players, jen[:Points])
+
+    if !thing
+      Rails.logger.info "====== no item chosen ========"
+      return Time.now + strategy.try_again_in
+    end
+
+    Rails.logger.info "====== using an item ========"
+    Rails.logger.debug "ThingUser.new(#{api.class}, #{thing.name} #{thing.api_id}, #{player}).do"
+    result = TheGame::ThingUser.new(api, thing, player).do
+
+    Rails.logger.info result
+    if result.is_a? String
+      return Time.now + strategy.try_again_in
+    else
+      return Time.now + 60
+    end
+  end
+
+  def handle_turn(turn)
+    if errors? turn
+      return 10
+    end
+
+    if !turn[:Item].nil?
+      Item.from_json(turn[:Item]).save
+      Rails.logger.info turn
+    end
+
+    return 1
+  end
+
+  def errors?(result)
+    if result.is_a? String
+      Rails.logger.info result
+      return true
+    end
+    false
   end
 
 end

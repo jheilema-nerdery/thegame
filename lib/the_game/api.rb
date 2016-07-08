@@ -21,52 +21,55 @@ module TheGame
       get('')
     end
 
+    def jen
+      get('points/jheilema')
+    end
+
   private
 
     def get(path)
-      url = "http://thegame.nerderylabs.com/#{path}"
-
-      response = Curl.get(url) do |http|
-        http.headers['apikey'] = @key
+      curl(:get, path) do |http|
         http.headers['Accept'] = 'application/json'
-        http.timeout = 10
+        http.timeout = 5
       end
-      @logger.debug response.body_str
-
-      result = begin
-        JSON.parse(response.body_str, symbolize_names: true)
-      rescue JSON::ParserError
-        response.body_str
-      end
-
-      process result
-      result
     end
 
     def post(path)
-      url = "http://thegame.nerderylabs.com/#{path}"
-
-      response = Curl.post(url) do |http|
-        http.timeout = 15
+      curl(:post, path) do |http|
+        http.timeout = 5
         http.headers['apikey'] = @key
       end
-      @logger.debug response.body_str
+    end
 
-      result = begin
-        JSON.parse(response.body_str, symbolize_names: true)
-      rescue JSON::ParserError
-        response.body_str
+    def curl(action, path, &block)
+      url = "http://thegame.nerderylabs.com/#{path}"
+
+      @logger.debug "#{action.upcase} /#{path}"
+
+      response = begin
+        result = Curl.send(action, url, &block).body_str
+      rescue Curl::Err::CurlError => e
+        return "*"*10 +
+          "  #{action.upcase} /#{path}  ****  " +
+          "#{e.class} : #{e.message}  " +
+          "*"*10
       end
 
-      process result
-      result
+      @logger.debug "#{action.upcase} /#{path} - #{response}"
+
+      process response
     end
 
   private
-    def process(result)
-      return if result.is_a? String
+    def process(response)
+      result = begin
+        JSON.parse(response, symbolize_names: true)
+      rescue JSON::ParserError
+        response
+      end
 
-      get_bonuses(result[:Messages]) if result.is_a?(Hash)
+      get_bonuses(result[:Messages]) if result.is_a?(Hash) && result[:Messages]
+      result
     end
 
     # check for bonus items and save them
@@ -83,7 +86,6 @@ module TheGame
         matches = bonus_message.match(regex).captures
         Item.create(api_id: matches[0], name: matches[1])
       end
-
     end
   end
 end
