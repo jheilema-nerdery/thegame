@@ -11,6 +11,10 @@ module TheGame
       10
     end
 
+    def use_items?
+      true
+    end
+
     def choose_item_and_player(current_effects = [], players, points)
       @players = players
 
