@@ -42,7 +42,7 @@ module TheGame
     end
 
     def curl(action, path, &block)
-      url = "http://thegame.nerderylabs.com/#{path}"
+      url = "http://thegame.nerderylabs.com:1337/#{path}"
 
       @logger.debug "#{action.upcase} /#{path}"
 
