@@ -30,13 +30,13 @@ module TheGame
     def get(path)
       curl(:get, path) do |http|
         http.headers['Accept'] = 'application/json'
-        http.timeout = 5
+        http.timeout = 10
       end
     end
 
     def post(path)
       curl(:post, path) do |http|
-        http.timeout = 5
+        http.timeout = 15
         http.headers['apikey'] = @key
       end
     end
