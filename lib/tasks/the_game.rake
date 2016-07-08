@@ -8,7 +8,7 @@ namespace :the_game do
     Rails.logger.level = ENV["DEBUG"] ? 0 : 1
 
     api         = TheGame::Api.new(Rails.logger, API_KEY)
-    strat_class = ENV["STRATEGY"] ? ENV["STRATEGY"].constantize : TheGame::Flexible
+    strat_class = ENV["STRATEGY"] ? ("TheGame::" + ENV["STRATEGY"]).constantize : TheGame::Flexible
     strategy    = strat_class.new(Rails.logger, api)
     attack_time = Time.now + 30.seconds
 
