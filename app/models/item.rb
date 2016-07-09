@@ -18,7 +18,7 @@ class Item < ActiveRecord::Base
 
   def update_from(json)
     # if there was a timeout, then we don't want to get rid of the item
-    if json.is_a? String && json.include? "Curl::Err"
+    if json.is_a?(String) && json.include?("Curl::Err")
       return
     end
 
