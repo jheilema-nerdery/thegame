@@ -34,7 +34,7 @@ private
       @logger.info turn
     end
 
-    return 1
+    return 1.005
   end
 
   def attack
