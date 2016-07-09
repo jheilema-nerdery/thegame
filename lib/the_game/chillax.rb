@@ -1,8 +1,6 @@
 class TheGame
   class Chillax
     def initialize(logger, api)
-      @logger = logger
-      @api = api
     end
 
     def use_items?

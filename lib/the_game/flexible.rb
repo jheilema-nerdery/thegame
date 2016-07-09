@@ -19,7 +19,6 @@ class TheGame
         'TheGame::HoldingPattern'
       ]
 
-
       strategies.each do |strat|
         strategy = strat.constantize.new(@logger, @api)
         result = strategy.choose_item_and_player(players, jen)

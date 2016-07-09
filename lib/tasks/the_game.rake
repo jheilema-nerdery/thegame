@@ -3,16 +3,16 @@ namespace :the_game do
   desc "Do things"
   task points: :environment do
     # Setup
-    API_KEY            = ENV["API_KEY"] or raise 'set your api key!'
-    Rails.logger       = ENV["DEBUG"] ? Logger.new(STDOUT) : Rails.logger
-    Rails.logger.level = ENV["DEBUG"] ? 0 : 1
+    api_key  = ENV["API_KEY"] or raise 'set your api key!'
+    username = ENV["USERNAME"] or raise 'set your username!'
+    logger   = TheGame::DecoratedLogger.new(username, ENV["DEBUG"])
 
-    api         = TheGame::Api.new(Rails.logger, API_KEY)
+    api         = TheGame::Api.new(logger, api_key)
     strat_class = ENV["STRATEGY"] ? ("TheGame::" + ENV["STRATEGY"]).constantize : TheGame::Flexible
-    strategy    = strat_class.new(Rails.logger, api)
+    strategy    = strat_class.new(logger, api)
     start_time  = Time.now + 30.seconds
 
-    game = TheGame.new(strategy, api, start_time, Rails.logger)
+    game = TheGame.new(strategy, api, start_time, logger)
 
     # allow Ctrl+C to quit
     Thread.new do

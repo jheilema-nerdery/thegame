@@ -16,7 +16,7 @@ class TheGame
     def choose_item_and_player(players, jen)
       job = Job.oldest.first
       if job
-        @logger.debug '-'*20 + "  Job Found: #{job.item_name} for #{job.target}  " + '-'*20
+        @logger.debug "Job Found: #{job.item_name} for #{job.target}"
         target = job.target
         item = Item.unused.oldest.where(name: job.item_name).first
         job.delete if item

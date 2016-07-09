@@ -48,15 +48,15 @@ private
       return false
     end
 
-    @logger.debug "====== Players, Jen Found - #{@strategy.class}  ======"
+    @logger.debug "Players, Jen Found - #{@strategy.class}"
     thing, player = @strategy.choose_item_and_player(players, jen)
 
     if !thing
-      @logger.info "====== no item chosen ========"
+      @logger.info "no item chosen"
       return Time.now + @strategy.try_again_in
     end
 
-    @logger.info "====== using an item ========"
+    @logger.info "using an item"
     @logger.debug "ThingUser.new(#{@api.class}, #{thing.name} #{thing.api_id}, #{player}).do"
     result = ThingUser.new(@api, thing, player).do
 

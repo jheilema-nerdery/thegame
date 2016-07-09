@@ -49,10 +49,8 @@ class TheGame
       response = begin
         result = Curl.send(action, url, &block).body_str
       rescue Curl::Err::CurlError => e
-        return "*"*10 +
-          "  #{action.upcase} /#{path}  ****  " +
-          "#{e.class} : #{e.message}  " +
-          "*"*10
+        return "#{action.upcase} /#{path}  ****  " +
+          "#{e.class} : #{e.message}  "
       end
 
       @logger.debug "#{action.upcase} /#{path} - #{response}"
