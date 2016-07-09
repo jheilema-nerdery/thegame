@@ -26,7 +26,7 @@ namespace :the_game do
         loop do
           sleep 0.32
           if Time.now > game.attack_time
-            game.attack
+            game.attack!
           end
         end
       end
