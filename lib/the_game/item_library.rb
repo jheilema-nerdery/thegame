@@ -16,7 +16,7 @@ class TheGame
 
     POSITIVE = POINTS + PRESENTS
 
-    EFFECT_OVER_TIME = [
+    MULTIPLIER = [
       "7777",                           # *7, 7m
       "Warthog",                        # *2, 15m
       "Moogle",                         # *3, 1/5 chance. 30m
@@ -31,12 +31,15 @@ class TheGame
       "Roger Wilco",
       "Power Pellet: Inky",   # trolling. rarity 4
       "Power Pellet: Blinky",
+      "Power Pellet: Pinky",
+      "Power Pellet: Clyde",
       "Nintendo Controller",
       "Zelda Cartridge",
       "Triforce of Wisdom",
       "Triforce of Power",
       "Triforce Of Courage",
       "Ocarina of Time",
+      "Red Crystal",          # "Simon's quest" badge
     ]
 
     PROTECTION = [
@@ -54,10 +57,10 @@ class TheGame
       "Morph Ball",     # Transform into a sphere that passes two players?
     ]
 
-    ALL_POSITIVE = POSITIVE + EFFECT_OVER_TIME + BADGE + PROTECTION + SWAP_PLACES
+    ALL_POSITIVE = POSITIVE + MULTIPLIER + BADGE + PROTECTION + SWAP_PLACES
 
     WEAPON = [
-      "Buster Sword",   # -500
+      "Buster Sword",   # -500 ?
       "Charizard",      # -500
       "Hadouken",       # -25% on gained points, 15m. ~225 at base rate
                         # plus additional YOU GOT BURNED (%?)
@@ -83,7 +86,6 @@ class TheGame
       "Blue Shell",     # hits the #1 person for a ton, take'm down a notch
       "Master Sword",   # minus a lot, a whole lot. more than blue shell
       "Golden Gun",     # huge damage, ~ 45000 when it hit colin
-      "Red Crystal",    # "Simon's quest" badge
     ]
 
     UNHELPFUL = [
@@ -111,7 +113,7 @@ class TheGame
                               # onto a mud wrestler!
     ]
 
-    ALL = POSITIVE + EFFECT_OVER_TIME + BADGE + WEAPON + PRICK +
+    ALL = POSITIVE + MULTIPLIER + BADGE + WEAPON + PRICK +
       CLOSE_RANGE + BIG_GUN + PROTECTION + UNHELPFUL + SILENCE +
       SWAP_PLACES + DONT_KNOW
   end

@@ -68,7 +68,7 @@ class TheGame
     end
 
     def less_than_3_multipliers
-      (@effects & ItemLibrary::EFFECT_OVER_TIME).length < 3
+      (@effects & ItemLibrary::MULTIPLIER).length < 3
     end
 
     def positive_effects
@@ -76,7 +76,7 @@ class TheGame
 
       # try to stay in the top 10    # but don't use too many items
       if !in_top_ten?('jheilema') && less_than_3_multipliers
-        nice_effects = ItemLibrary::EFFECT_OVER_TIME -
+        nice_effects = ItemLibrary::MULTIPLIER -
                       ['7777'] -  # not the fanciest one
                       @effects    # not any that we already have
         positive_items += nice_effects

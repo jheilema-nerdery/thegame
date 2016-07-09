@@ -53,7 +53,7 @@ private
 
     if !thing
       @logger.info "no item chosen"
-      return Time.now + @strategy.try_again_in
+      return false
     end
 
     @logger.info "using an item"
