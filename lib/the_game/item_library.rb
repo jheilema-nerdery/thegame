@@ -1,4 +1,4 @@
-module TheGame
+class TheGame
   class ItemLibrary
     POSITIVE = [
       "Buffalo",                         # 100
@@ -16,8 +16,6 @@ module TheGame
       "Warthog",                        # *2, 15m
       "Moogle",                         # *3, 1/5 chance. 30m
       "Rush the Dog",                   # *10, 1/8 chance. 1h. sidekick
-      "Miniature Giant Space Hamster",  # *10, 1/10 chance. overwrites RtD?
-                                        # possibly has other interactions
     ]
 
     BADGE = [
@@ -91,6 +89,7 @@ module TheGame
       "Bo Jackson",     # 7
       "Pandora's Box",  # don't open it
       "Space Invaders", # ?????. Bypasses Tanooki Suit. 1h1m. disabled rn.
+      "Miniature Giant Space Hamster",  # annoying message in my logs
     ]
 
     SILENCE = [

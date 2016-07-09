@@ -1,4 +1,4 @@
-module TheGame
+class TheGame
   class Flexible
     def initialize(logger, api)
       @logger = logger

@@ -1,4 +1,4 @@
-module TheGame
+class TheGame
   class Driveable
     def initialize(logger, api)
       @logger = logger
@@ -25,7 +25,7 @@ module TheGame
       if item
         # record the player status so we can figure out what works
         @logger.info players.find{|p| p[:PlayerName] == target }
-        return [item, target]
+        return [item, target, job]
       end
 
       []

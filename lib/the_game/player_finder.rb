@@ -1,4 +1,4 @@
-module TheGame
+class TheGame
   class PlayerFinder
     def initialize(api)
       @api = api

@@ -1,4 +1,4 @@
-module TheGame
+class TheGame
   class ThingUser
     def initialize(api, thing, person = nil)
       @api = api

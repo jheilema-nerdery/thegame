@@ -1,4 +1,4 @@
-module TheGame
+class TheGame
   class FakeApi
     def initialize(logger, key)
       @logger = logger

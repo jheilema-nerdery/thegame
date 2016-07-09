@@ -1,4 +1,4 @@
-module TheGame
+class TheGame
   class ItemThingDoer
     def initialize(thing, api)
       @thing = thing

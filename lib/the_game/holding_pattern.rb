@@ -1,4 +1,4 @@
-module TheGame
+class TheGame
   class HoldingPattern
     def initialize(logger, api)
       @logger = logger

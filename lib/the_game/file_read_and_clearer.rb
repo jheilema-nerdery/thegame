@@ -1,4 +1,4 @@
-module TheGame
+class TheGame
   class FileReadAndClearer
     def initialize(filename)
       @filename = filename

@@ -1,4 +1,4 @@
-module TheGame
+class TheGame
   class TanookiSniper
     def initialize(logger, api)
       @logger = logger
