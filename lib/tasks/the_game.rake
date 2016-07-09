@@ -22,7 +22,7 @@ namespace :the_game do
     end
 
     players.each do |player|
-      sleep 0.2 # so they don't all overlap
+      sleep 0.5 # so they don't all overlap
 
       Thread.new do
         loop do
@@ -39,16 +39,15 @@ namespace :the_game do
       end.abort_on_exception = true
     end
 
-    # allow Ctrl+C to quit
-      t = Thread.new do
-    loop do
-      exit if gets.chomp == 'q'
-    end
-    end
+    interrupted = false
+    trap("INT") { interrupted = true } # traps Ctrl-C
+    puts 'Press Ctrl-C to exit'
 
     loop do
-      sleep 10
+      break if interrupted
+      sleep 1
     end
+
   end
 
 

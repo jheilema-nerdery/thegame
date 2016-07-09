@@ -39,7 +39,7 @@ private
 
   def handle_turn(turn)
     if errors? turn
-      false
+      return false
     end
 
     if !turn[:Item].nil?
