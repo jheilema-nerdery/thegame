@@ -3,11 +3,16 @@ class TheGame
     @strategy    = strategy
     @api         = api
     @next_attack = start
+    @next_tick   = Time.now
     @logger      = logger
   end
 
   def attack_time
     @next_attack
+  end
+
+  def tick_time
+    @next_tick
   end
 
   def attack!
@@ -19,14 +24,22 @@ class TheGame
   end
 
   def tick
-    sleep(handle_turn(@api.tick))
+    if handle_turn(@api.tick)
+      @next_tick = Time.now + 1.005
+    else
+      @next_tick = Time.now + 10
+    end
+  end
+
+  def use_items?
+    @strategy.use_items?
   end
 
 private
 
   def handle_turn(turn)
     if errors? turn
-      return 10
+      false
     end
 
     if !turn[:Item].nil?
@@ -34,7 +47,7 @@ private
       @logger.info turn
     end
 
-    return 1.005
+    return true
   end
 
   def attack

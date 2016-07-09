@@ -1,40 +1,53 @@
 namespace :the_game do
 
   desc "Do things"
-  task points: :environment do
+  task play: :environment do
     # Setup
-    api_key  = ENV["API_KEY"] or raise 'set your api key!'
-    username = ENV["USERNAME"] or raise 'set your username!'
-    logger   = TheGame::DecoratedLogger.new(username, ENV["DEBUG"])
-
-    api         = TheGame::Api.new(logger, api_key)
-    strat_class = ENV["STRATEGY"] ? ("TheGame::" + ENV["STRATEGY"]).constantize : TheGame::Flexible
-    strategy    = strat_class.new(logger, api)
+    configs  = TheGame::FileReadAndClearer.new('.config').get
+    puts configs
     start_time  = Time.now + 30.seconds
 
-    game = TheGame.new(strategy, api, start_time, logger)
+    # get players
+    players = configs.map do |player|
+      api_key  = player[:api_key] or raise 'set your api key!'
+      username = player[:username] or raise 'set your username!'
+      logger   = TheGame::DecoratedLogger.new(username, ENV["DEBUG"])
 
-    # allow Ctrl+C to quit
-    Thread.new do
-      loop do
-        exit if gets.chomp == 'q'
-      end
+      api         = TheGame::Api.new(logger, api_key)
+      strat_class = ("TheGame::" + player[:strategy]).constantize
+      strategy    = strat_class.new(logger, api)
+      start_time  = start_time + 5.seconds
+
+      TheGame.new(strategy, api, start_time, logger)
     end
 
-    if strategy.use_items?
-      t = Thread.new do
+    players.each do |player|
+      sleep 0.2 # so they don't all overlap
+
+      Thread.new do
         loop do
           sleep 0.32
-          if Time.now > game.attack_time
-            game.attack!
+          if Time.now > player.tick_time
+            player.tick
+          end
+          if player.use_items?
+            if Time.now > player.attack_time
+              player.attack!
+            end
           end
         end
-      end
-      t.abort_on_exception = true
+      end.abort_on_exception = true
+    end
+
+    # allow Ctrl+C to quit
+      t = Thread.new do
+    loop do
+      exit if gets.chomp == 'q'
+    end
     end
 
     loop do
-      game.tick
+      sleep 10
     end
   end
 
