@@ -22,7 +22,7 @@ namespace :the_game do
     end
 
     if strategy.use_items?
-      Thread.new do
+      t = Thread.new do
         loop do
           sleep 0.32
           if Time.now > game.attack_time
@@ -30,6 +30,7 @@ namespace :the_game do
           end
         end
       end
+      t.abort_on_exception = true
     end
 
     loop do
