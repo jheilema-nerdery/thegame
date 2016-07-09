@@ -49,7 +49,7 @@ private
     end
 
     @logger.debug "====== Players, Jen Found - #{@strategy.class}  ======"
-    thing, player = @strategy.choose_item_and_player(jen[:Effects], players, jen[:Points])
+    thing, player = @strategy.choose_item_and_player(players, jen)
 
     if !thing
       @logger.info "====== no item chosen ========"
@@ -57,17 +57,17 @@ private
     end
 
     @logger.info "====== using an item ========"
-    @logger.debug "ThingUser.new(#{api.class}, #{thing.name} #{thing.api_id}, #{player}).do"
+    @logger.debug "ThingUser.new(#{@api.class}, #{thing.name} #{thing.api_id}, #{player}).do"
     result = ThingUser.new(@api, thing, player).do
 
     @logger.info result
-    if result.is_a? String
-      return Time.now + @strategy.try_again_in.seconds
+
+    if result.is_a?(String) || invalid_item?(result)
+      return false
     else
-      return Time.now + 60
+      return true
     end
   end
-
 
   def errors?(result)
     if result.is_a? String
@@ -75,6 +75,13 @@ private
       return true
     end
     false
+  end
+
+  def invalid_item?(result)
+    [
+      "Invalid item GUID",
+      "The request is invalid.",
+    ].any?{|m| m == result[:Message] }
   end
 
 

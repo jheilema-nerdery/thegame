@@ -13,7 +13,7 @@ class TheGame
       10
     end
 
-    def choose_item_and_player(current_effects = [], players, points)
+    def choose_item_and_player(players, jen)
       job = Job.oldest.first
       if job
         @logger.debug '-'*20 + "  Job Found: #{job.item_name} for #{job.target}  " + '-'*20
@@ -25,7 +25,7 @@ class TheGame
       if item
         # record the player status so we can figure out what works
         @logger.info players.find{|p| p[:PlayerName] == target }
-        return [item, target, job]
+        return [item, target]
       end
 
       []

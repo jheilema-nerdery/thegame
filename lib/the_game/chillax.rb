@@ -13,7 +13,7 @@ class TheGame
       420
     end
 
-    def choose_item_and_player(effects=[], players, points)
+    def choose_item_and_player(players, jen)
       []
     end
   end

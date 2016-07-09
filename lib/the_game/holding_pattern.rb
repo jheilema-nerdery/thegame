@@ -15,9 +15,9 @@ class TheGame
       5
     end
 
-    def choose_item_and_player(current_effects = [], players, points)
+    def choose_item_and_player(players, jen)
       @players = players
-      @effects = current_effects
+      @effects = jen[:Effects]
 
       item = find_item
 

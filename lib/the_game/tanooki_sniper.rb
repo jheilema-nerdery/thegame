@@ -15,7 +15,7 @@ class TheGame
       true
     end
 
-    def choose_item_and_player(current_effects = [], players, points)
+    def choose_item_and_player(players, jen)
       @players = players
 
       player = @players.find {|p| not_me(p) && has_tanooki_suit(p) }

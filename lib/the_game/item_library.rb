@@ -1,15 +1,20 @@
 class TheGame
   class ItemLibrary
-    POSITIVE = [
+    POINTS = [
       "Buffalo",                         # 100
       "UUDDLRLRBA",                      # random, 3-100?
       "Wedge",                           # 50
       "Biggs",                           # 50
       "Pizza",                           # 50
+    ]
+
+    PRESENTS =[
       "Pokeball",                        # 35, bonus item
       "Da Da Da Da Daaa Da DAA da da",   # 10, bonus item
       "Treasure Chest",                  # 3 bonus items
     ]
+
+    POSITIVE = POINTS + PRESENTS
 
     EFFECT_OVER_TIME = [
       "7777",                           # *7, 7m

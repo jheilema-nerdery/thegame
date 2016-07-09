@@ -13,7 +13,7 @@ class TheGame
       10
     end
 
-    def choose_item_and_player(effects, players, points)
+    def choose_item_and_player(players, jen)
       strategies = [
         'TheGame::Driveable',
         'TheGame::HoldingPattern'
@@ -22,7 +22,7 @@ class TheGame
 
       strategies.each do |strat|
         strategy = strat.constantize.new(@logger, @api)
-        result = strategy.choose_item_and_player(effects, players, points)
+        result = strategy.choose_item_and_player(players, jen)
         return result unless result.empty? # break on the first one
       end
       []
