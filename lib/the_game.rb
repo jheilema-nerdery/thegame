@@ -84,7 +84,7 @@ private
 
   def errors?(result)
     if result.is_a? String
-      Rails.logger.info result
+      @logger.info result
       return true
     end
     false
