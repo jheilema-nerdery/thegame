@@ -19,11 +19,11 @@ class TheGame
         @strategies.push(*strategy)
       end
 
-      def choose_item_and_player(players, jen)
+      def choose_item_and_player(players, jen, username)
         @strategies.each do |strat|
           @logger.debug "Attempting strategy: #{strat}"
           strategy = ("TheGame::Strategy::" + strat).constantize.new(@logger, @api)
-          result = strategy.choose_item_and_player(players, jen)
+          result = strategy.choose_item_and_player(players, jen, username)
           return result unless result.empty? # break on the first one
           @logger.debug "#{strat} no good, trying another"
         end

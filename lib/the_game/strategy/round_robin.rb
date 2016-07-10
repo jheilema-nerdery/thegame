@@ -20,10 +20,10 @@ class TheGame
         @strategies.push(*strategy)
       end
 
-      def choose_item_and_player(players, jen)
+      def choose_item_and_player(players, jen, username)
         @strategies.each do |i|
           strategy = ("TheGame::Strategy::" + next_strategy).constantize.new(@logger, @api)
-          result = strategy.choose_item_and_player(players, jen)
+          result = strategy.choose_item_and_player(players, jen, username)
           increment_index
 
           return result unless result.empty? # break on the first one

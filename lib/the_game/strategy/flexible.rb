@@ -14,7 +14,7 @@ class TheGame
         10
       end
 
-      def choose_item_and_player(players, jen)
+      def choose_item_and_player(players, jen, username)
         strategies = [
           'TheGame::Strategy::Driveable',
           'TheGame::Strategy::HoldingPattern'

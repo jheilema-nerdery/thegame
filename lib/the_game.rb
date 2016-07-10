@@ -1,10 +1,11 @@
 class TheGame
-  def initialize(strategy, api, start, logger)
+  def initialize(strategy, api, start, logger, username)
     @api         = api
     @next_attack = start
     @next_tick   = Time.now
     @logger      = logger
     @strategy    = fetch_strategy(strategy, logger, api)
+    @username    = username
   end
 
   def attack_time
@@ -71,7 +72,7 @@ private
     end
 
     @logger.debug "Players, Jen Found - #{@strategy.class}"
-    thing, player = @strategy.choose_item_and_player(players, jen)
+    thing, player = @strategy.choose_item_and_player(players, jen, @username)
 
     if !thing
       @logger.info "no item chosen"

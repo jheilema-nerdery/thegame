@@ -15,7 +15,7 @@ namespace :the_game do
       api         = TheGame::Api.new(logger, api_key)
       start_time  = start_time + 5.seconds
 
-      game = TheGame.new(player[:strategy], api, start_time, logger)
+      game = TheGame.new(player[:strategy], api, start_time, logger, username)
       game.add_strategies(player[:strategies]) if player[:strategies]
       game
     end

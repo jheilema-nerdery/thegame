@@ -14,7 +14,7 @@ class TheGame
         10
       end
 
-      def choose_item_and_player(players, jen)
+      def choose_item_and_player(players, jen, username)
         job = Job.oldest.first
         if job
           @logger.debug "Job Found: #{job.item_name} for #{job.target}"

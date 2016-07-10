@@ -16,7 +16,7 @@ class TheGame
         5
       end
 
-      def choose_item_and_player(players, jen)
+      def choose_item_and_player(players, jen, username)
         @players = players
         @effects = jen[:Effects]
 
