@@ -31,6 +31,11 @@ class TheGame
       ]
     end
 
+    def jen
+      post('points/jheilema')
+      {:PlayerName=>"jheilema",:AvatarUrl =>"https://lh6.googleusercontent.com/photo.jpg","Badges":[{:BadgeName=>"Vampire"},{:BadgeName=>"Power Pellet: Pinky"},{:BadgeName=>"Power Pellet: Blinky"},{:BadgeName=>"Chocobo"},{:BadgeName=>"Simon's Quest Badge"},{:BadgeName=>"Plunger"},{:BadgeName=>"Pony"}],:Effects=>["Rush the Dog","Warthog","Moogle","Varia Suit","Lycanthropy","Vampirism"],:Title =>"aka Pinky",:Points=>210139,:ItemsGained=>0,:ItemsUsed=>1}
+    end
+
   private
 
     def post(path)
