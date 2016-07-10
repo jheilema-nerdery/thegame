@@ -15,9 +15,11 @@ class TheGame
       end
 
       def choose_item_and_player(players, jen, username)
+        return [] if jen[:Effects].include?('Tanooki Suit')
+
         item = find_item
         return [] if item.nil?
-        @logger.debug "#{item.name} chosen"
+        @logger.debug "Presents: #{item.name} chosen"
 
         return [item, username]
       end
