@@ -7,7 +7,7 @@ class TheGame
     def get
       lines = []
       File.foreach(@filename){|l| lines << l }
-      lines = lines[0...lines.count-1]
+      lines = lines[0...lines.count]
       lines.map{|i| JSON.parse(i, symbolize_names: true) }
     end
 
