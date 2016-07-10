@@ -61,18 +61,27 @@ private
   end
 
   def attack
-    players = @api.players
-    if errors?(players)
+    players_data = @api.players
+    if errors?(players_data)
       return false
     end
+    players = Player.all_from_json(players_data)
 
-    jen = @api.jen
-    if errors?(jen)
+    jen_data = @api.jen
+    if errors?(jen_data)
       return false
+    end
+    jen = Player.new(jen_data)
+
+    current_player_data = @api.player(@username)
+    if errors?(current_user_data)
+      current_player = Player.stubbed(@username)
+    else
+      current_player = Player.new(current_user_data)
     end
 
     @logger.debug "Players, Jen Found - #{@strategy.class}"
-    thing, player = @strategy.choose_item_and_player(players, jen, @username)
+    thing, player = @strategy.choose_item_and_player(players, jen, current_player)
 
     if !thing
       @logger.info "no item chosen"

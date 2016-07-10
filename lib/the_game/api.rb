@@ -25,6 +25,10 @@ class TheGame
       get('points/jheilema')
     end
 
+    def player(username)
+      get("points/#{username}")
+    end
+
   private
 
     def get(path)

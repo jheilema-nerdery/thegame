@@ -20,6 +20,11 @@ class TheGame
       {:Messages=>["You used <SPNKR> on jmullin; -100 points for jmullin!"], :TargetName=>"jmullin", :Points=>29323}
     end
 
+    def player(username)
+      post("points/#{username}")
+      {:PlayerName=>"sbausch", :AvatarUrl=>"https://lh4.googleusercontent.com/photo.jpg", :Points=>81226, :Title=>"", :Effects=>[], :Badges=>[{:BadgeName=>"Simon's Quest Badge"}, {:BadgeName=>"Plunger"}, {:BadgeName=>"Pony"}]}
+    end
+
     def players
       post("/")
       [

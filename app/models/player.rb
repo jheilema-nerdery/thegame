@@ -5,13 +5,21 @@ class Player
     @name = player_data[:PlayerName]
     @points = player_data[:Points]
     @badges = extract_badges(player_data[:Badges])
-    @effects = player_data[:effects]
+    @effects = player_data[:Effects]
   end
 
-   def self.all_from_json(player_datas)
+  def self.all_from_json(player_datas)
     player_datas.map do |p|
       new(p)
     end
+  end
+
+  def self.stubbed(username)
+    new({:PlayerName => username, :Points => 0, :Badges => [], :Effects => []})
+  end
+
+  def ==(player)
+    self.name == player.name
   end
 
 private
