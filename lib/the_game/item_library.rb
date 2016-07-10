@@ -44,7 +44,8 @@ class TheGame
 
     PROTECTION = [
       "Cardboard Box",  # ???? (hides?)
-      "Varia Suit",     # 1h. Holy water, Master sword gets through
+      "Varia Suit",     # 1h. Holy water, Master sword gets through.
+                        # Does not block: pokeball
       "Carbuncle",      # 5m "reflects" damage (inverts it? O_o)
       "Star",           # 5m temporary invincibility
       "Gold Ring",      # protection, 3m - blocks bo jackson... others?
@@ -90,7 +91,7 @@ class TheGame
 
     UNHELPFUL = [
       "Mushroom",       # 50% chance for *0.5 or *2, 5m
-      "Leeroy Jenkins", # adds a battle yell
+      "Leeroy Jenkins", # adds a battle yell. Targets yourself.
       "Portal Nun",
       "Box of Bees",
       "Bo Jackson",     # 7
