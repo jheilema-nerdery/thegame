@@ -3,16 +3,15 @@ namespace :the_game do
   desc "Do things"
   task play: :environment do
     # Setup
-    configs  = TheGame::FileReadAndClearer.new('.config').get
+    configs     = TheGame::FileReadAndClearer.new('.config').get
     puts configs
     start_time  = Time.now + 30.seconds
 
     # get players
     players = configs.map do |player|
-      api_key  = player[:api_key] or raise 'set your api key!'
-      username = player[:username] or raise 'set your username!'
-      logger   = TheGame::DecoratedLogger.new(username, ENV["DEBUG"])
-
+      api_key     = player[:api_key] or raise 'set your api key!'
+      username    = player[:username] or raise 'set your username!'
+      logger      = TheGame::DecoratedLogger.new(username, ENV["DEBUG"])
       api         = TheGame::Api.new(logger, api_key)
       strat_class = ("TheGame::" + player[:strategy]).constantize
       strategy    = strat_class.new(logger, api)
