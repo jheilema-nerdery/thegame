@@ -16,8 +16,8 @@ class TheGame
 
       def choose_item_and_player(players, jen)
         strategies = [
-          'TheGame::Driveable',
-          'TheGame::HoldingPattern'
+          'TheGame::Strategy::Driveable',
+          'TheGame::Strategy::HoldingPattern'
         ]
 
         strategies.each do |strat|
