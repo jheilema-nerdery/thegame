@@ -39,7 +39,7 @@ class TheGame
   private
 
     def post(path)
-      puts path
+      @logger.info path
     end
 
   end

@@ -13,11 +13,11 @@ namespace :the_game do
       username    = player[:username] or raise 'set your username!'
       logger      = TheGame::DecoratedLogger.new(username, ENV["DEBUG"])
       api         = TheGame::Api.new(logger, api_key)
-      strat_class = ("TheGame::" + player[:strategy]).constantize
-      strategy    = strat_class.new(logger, api)
       start_time  = start_time + 5.seconds
 
-      TheGame.new(strategy, api, start_time, logger)
+      game = TheGame.new(player[:strategy], api, start_time, logger)
+      game.add_strategies(player[:strategies]) if player[:strategies]
+      game
     end
 
     players.each do |player|

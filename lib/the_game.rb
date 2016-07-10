@@ -1,10 +1,10 @@
 class TheGame
   def initialize(strategy, api, start, logger)
-    @strategy    = strategy
     @api         = api
     @next_attack = start
     @next_tick   = Time.now
     @logger      = logger
+    @strategy    = fetch_strategy(strategy, logger, api)
   end
 
   def attack_time
@@ -35,7 +35,16 @@ class TheGame
     @strategy.use_items?
   end
 
+  def add_strategies(strategies)
+    @strategy.add_strategy(*strategies)
+  end
+
 private
+
+  def fetch_strategy(name, logger, api)
+    strat_class = ("TheGame::Strategy::" + name).constantize
+    strat_class.new(logger, api)
+  end
 
   def handle_turn(turn)
     if errors? turn
