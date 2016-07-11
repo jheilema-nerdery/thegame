@@ -6,6 +6,7 @@ class TheGame
         @api = api
         @players = []
         @effects = []
+        @jen = nil
       end
 
       def use_items?
@@ -16,9 +17,9 @@ class TheGame
         5
       end
 
-      def choose_item_and_player(players, jen, username)
+      def choose_item_and_player(players, jen, current_player)
         @players = players
-        @effects = jen[:Effects]
+        @jen = jen
 
         item = find_item
 
@@ -30,10 +31,10 @@ class TheGame
           return item, 'jheilema'
         end
 
-        player = @players.find {|p| not_me(p) && no_sheild(p) && not_stacking(item, p) }
-        @logger.debug "Player '#{player[:PlayerName]}' chosen"
+        player = @players.find {|p| p != @jen && no_sheild(p) && not_stacking(item, p) }
+        @logger.debug "Player '#{player.name}' chosen"
 
-        return item, player[:PlayerName]
+        return item, player.name
       end
 
     private
@@ -41,31 +42,27 @@ class TheGame
       def find_item
         item_types = ItemLibrary::WEAPON
 
-        unless @effects.include? "Tanooki Suit"
+        unless @jen.effects.include? "Tanooki Suit"
           item_types += positive_effects
         end
 
-        if @players[0][:PlayerName] != 'jheilema'
+        if @players.first != @jen
           item_types = item_types + ItemLibrary::CLOSE_RANGE
         end
 
         Item.unused.oldest.where(name: item_types).first
       end
 
-      def not_me(p)
-        p[:PlayerName] != 'jheilema'
-      end
-
       def no_sheild(p)
-        (p[:Effects] & TheGame::ItemLibrary::PROTECTION).empty?
+        (p.effects & TheGame::ItemLibrary::PROTECTION).empty?
       end
 
       def not_stacking(item, p)
-        !p[:Effects].include?(item.name)
+        !p.effects.include?(item.name)
       end
 
       def in_top_ten?(player_name)
-        @players.any?{|p| p[:PlayerName] == player_name}
+        @players.any?{|p| p.name == player_name}
       end
 
       def less_than_3_multipliers

@@ -61,49 +61,64 @@ private
   end
 
   def attack
-    players_data = @api.players
-    if errors?(players_data)
-      return false
-    end
-    players = Player.all_from_json(players_data)
-
-    jen_data = @api.jen
-    if errors?(jen_data)
-      return false
-    end
-    jen = Player.new(jen_data)
-
-    current_player_data = @api.player(@username)
-    if errors?(current_player_data)
-      current_player = Player.stubbed(@username)
-    else
-      current_player = Player.new(current_player_data)
-    end
+    @players = fetch_players
+    return false unless @players
+    @jen = fetch_jen
+    return false unless @jen
+    @current_player = fetch_current_player
 
     @logger.debug "Players, Jen Found - #{@strategy.class}"
-    thing, player = @strategy.choose_item_and_player(players, jen, current_player)
+    thing, player_name, job = @strategy.choose_item_and_player(@players, @jen, @current_player)
 
     if !thing
-      @logger.info "no item chosen"
+      @logger.info "no item found, skipping"
       return false
     end
 
-    @logger.info "using an item"
-    @logger.debug "ThingUser.new(#{@api.class}, #{thing.name} #{thing.api_id}, #{player}).do"
-    result = ThingUser.new(@api, thing, player).do
+    @logger.info "Using #{thing.name} on #{player_name}"
+    @logger.debug "ThingUser.new(#{@api.class}, #{thing.name} #{thing.api_id}, #{player_name}).do"
+    result = ThingUser.new(@api, thing, player_name).do
 
     @logger.info result
 
     if invalid_item?(result)
-      job.delete if job
       return false
     end
-
     if result.is_a?(String)
       return false
     end
+    job.delete if job
 
-    return true
+    true
+  end
+
+  def fetch_players
+    players_data = @api.players
+    if errors?(players_data)
+      return false
+    end
+    Player.all_from_json(players_data)
+  end
+
+  def fetch_jen
+    jen_data = @api.jen
+    if errors?(jen_data)
+      return false
+    end
+    Player.new(jen_data)
+  end
+
+  def fetch_current_player
+    return @jen if @username == 'jheilema'
+    player = @players.find{|p| p.name == @username }
+    return player if player
+
+    current_player_data = @api.player(@username)
+    if errors?(current_player_data)
+      Player.stubbed(@username)
+    else
+      Player.new(current_player_data)
+    end
   end
 
   def errors?(result)

@@ -19,15 +19,15 @@ class TheGame
       def choose_item_and_player(players, jen, username)
         @players = players
 
-        player = @players.find {|p| not_me(p) && has_tanooki_suit(p) }
+        player = @players.find {|p| p != jen && has_tanooki_suit(p) }
         return [] if player.nil?
-        @logger.debug "Player '#{player[:PlayerName]}' chosen"
+        @logger.debug "Player '#{player.name}' chosen"
 
         item = find_item
         return [] if item.nil?
         @logger.debug "Sniping #{item.name} chosen"
 
-        return item, player[:PlayerName]
+        return item, player.name
       end
 
     private
@@ -36,12 +36,8 @@ class TheGame
         Item.unused.oldest.where(name: ItemLibrary::PRICK).first
       end
 
-      def not_me(p)
-        p[:PlayerName] != 'jheilema'
-      end
-
       def has_tanooki_suit(p)
-        p[:Effects].include?("Tanooki Suit")
+        p.effects.include?("Tanooki Suit")
       end
 
     end

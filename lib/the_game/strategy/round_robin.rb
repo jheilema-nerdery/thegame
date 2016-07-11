@@ -22,8 +22,10 @@ class TheGame
 
       def choose_item_and_player(players, jen, username)
         @strategies.each do |i|
+          @logger.debug "RoundRobin: Attempting #{next_strategy}"
           strategy = ("TheGame::Strategy::" + next_strategy).constantize.new(@logger, @api)
           result = strategy.choose_item_and_player(players, jen, username)
+          @logger.debug "#{next_strategy} no good, trying another" if result.empty?
           increment_index
 
           return result unless result.empty? # break on the first one

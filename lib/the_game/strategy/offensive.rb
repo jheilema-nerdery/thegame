@@ -15,22 +15,24 @@ class TheGame
         10
       end
 
-      def choose_item_and_player(players, jen, username)
+      def choose_item_and_player(players, jen, current)
         @players = players
+        @jen = jen
+        @current = @current
 
         player = choose_player
         return [] if player.nil?
-        @logger.debug "Player '#{player[:PlayerName]}' chosen"
+        @logger.debug "Player '#{player.name}' chosen"
 
         item = find_item(player)
         return [] if item.nil?
         @logger.debug "#{item.name} chosen"
 
-        return item, player[:PlayerName]
+        return item, player.name
       end
 
       def choose_player
-        sheildless = @players.find_all{|p| no_sheild(p) }
+        sheildless = @players.find_all{|p| no_sheild(p) && p != @current }
         sheildless.find{|p| has_multipliers(p) && !has_hadouken(p) } || sheildless.sample
       end
 
@@ -41,29 +43,25 @@ class TheGame
           item_types = ['Hadouken']
         end
 
-        if is_me(player)
+        if player == @jen
           item_types = ItemLibrary::PRICK
         end
 
-        item_types -= player[:Effects]
+        item_types -= player.effects
 
         Item.unused.oldest.where(name: item_types).first
       end
 
       def has_hadouken(player)
-        player[:Effects].include?('Hadouken')
+        player.effects.include?('Hadouken')
       end
 
       def has_multipliers(player)
-        (player[:Effects] & ItemLibrary::MULTIPLIER).length > 0
-      end
-
-      def is_me(p)
-        p[:PlayerName] == 'jheilema'
+        (player.effects & ItemLibrary::MULTIPLIER).length > 0
       end
 
       def no_sheild(p)
-        (p[:Effects] & TheGame::ItemLibrary::PROTECTION).empty?
+        (p.effects & TheGame::ItemLibrary::PROTECTION - ["Varia Suit"]).empty?
       end
 
     end

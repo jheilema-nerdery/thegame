@@ -12,7 +12,7 @@ class TheGame
         420
       end
 
-      def choose_item_and_player(players, jen, username)
+      def choose_item_and_player(players, jen, current_player)
         []
       end
     end
