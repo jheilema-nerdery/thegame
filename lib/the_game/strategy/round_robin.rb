@@ -13,7 +13,7 @@ class TheGame
       end
 
       def try_again_in
-        10
+        2
       end
 
       def add_strategy(*strategy)

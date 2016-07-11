@@ -101,6 +101,8 @@ private
   end
 
   def fetch_jen
+    player = @players.find{|p| p.name == 'jheilema' }
+    return player if player
     jen_data = @api.jen
     if errors?(jen_data)
       return false
@@ -133,6 +135,7 @@ private
     [
       "Invalid item GUID",
       "The request is invalid.",
+      "An error has occurred.",
     ].any?{|m| m == result[:Message] }
   end
 
