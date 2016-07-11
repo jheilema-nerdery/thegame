@@ -81,10 +81,10 @@ private
 
     @logger.info result
 
-    if invalid_item?(result)
+    if result.is_a?(String)
       return false
     end
-    if result.is_a?(String)
+    if invalid_item?(result)
       return false
     end
     job.delete if job

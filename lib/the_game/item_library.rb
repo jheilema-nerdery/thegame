@@ -47,7 +47,8 @@ class TheGame
       "Varia Suit",     # 1h. Holy water, Master sword gets through.
                         # Does not block: pokeball
       "Carbuncle",      # 5m "reflects" damage (inverts it? O_o)
-      "Star",           # 5m temporary invincibility
+      "Star",           # 5m temporary invincibility. Pokeball doesn't work,
+                        # cardboard box does
       "Gold Ring",      # protection, 3m - blocks bo jackson... others?
       "Tanooki Suit",   # blocks 3 effects
     ]
