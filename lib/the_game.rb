@@ -74,10 +74,10 @@ private
     jen = Player.new(jen_data)
 
     current_player_data = @api.player(@username)
-    if errors?(current_user_data)
+    if errors?(current_player_data)
       current_player = Player.stubbed(@username)
     else
-      current_player = Player.new(current_user_data)
+      current_player = Player.new(current_player_data)
     end
 
     @logger.debug "Players, Jen Found - #{@strategy.class}"
