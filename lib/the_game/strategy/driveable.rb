@@ -20,15 +20,16 @@ class TheGame
           @logger.debug "Job Found: #{job.item_name} for #{job.target}"
           target = job.target
           item = Item.unused.oldest.where(name: job.item_name).first
-          job.delete if item
         end
 
         if item
           # record the player status so we can figure out what works
           @logger.info players.find{|p| p[:PlayerName] == target }
-          return [item, target]
+          return [item, target, job]
         end
 
+        @logger.info "No item found for Job #{job.id} - #{job.item_name}"
+        job.delete
         []
       end
     end

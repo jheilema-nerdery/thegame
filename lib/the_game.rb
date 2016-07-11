@@ -94,11 +94,16 @@ private
 
     @logger.info result
 
-    if result.is_a?(String) || invalid_item?(result)
+    if invalid_item?(result)
+      job.delete if job
       return false
-    else
-      return true
     end
+
+    if result.is_a?(String)
+      return false
+    end
+
+    return true
   end
 
   def errors?(result)
