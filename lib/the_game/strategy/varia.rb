@@ -16,7 +16,7 @@ class TheGame
 
       def choose_item_and_player(players, jen, username)
         return [] if jen.effects.include? 'Tanooki Suit'
-        return [] unless (jen.effects & (item_types)).length >= item_types.length
+        return [] if (jen.effects & (item_types)).length >= item_types.length
 
         item = find_item
         return [] if item.nil?
