@@ -18,7 +18,7 @@ class TheGame
       def choose_item_and_player(players, jen, current)
         @players = players
         @jen = jen
-        @current = @current
+        @current = current
 
         player = choose_player
         return [] if player.nil?
