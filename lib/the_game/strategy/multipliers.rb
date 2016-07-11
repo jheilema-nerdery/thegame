@@ -16,16 +16,17 @@ class TheGame
 
       def choose_item_and_player(players, jen, username)
         return [] if jen.effects.include? 'Tanooki Suit'
-        return [] if (jen.effects & (item_types)).length >= item_types.length
+        return [] unless (item_types - jen.effects).length == 0
 
-        item = find_item
+        item = find_item(jen.effects)
         return [] if item.nil?
 
         @logger.debug "Multipliers: #{item.name} chosen"
         return [item, 'jheilema']
       end
 
-      def find_item
+      def find_item(effects)
+        items = item_types - effects
         Item.unused.oldest.where(name: item_types).first
       end
 

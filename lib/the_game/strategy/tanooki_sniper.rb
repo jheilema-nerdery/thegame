@@ -33,7 +33,7 @@ class TheGame
     private
 
       def find_item
-        Item.unused.oldest.where(name: ItemLibrary::PRICK).first
+        Item.unused.oldest.where(name: ItemLibrary::PRICK + ["Bo Jackson"]).first
       end
 
       def has_tanooki_suit(p)

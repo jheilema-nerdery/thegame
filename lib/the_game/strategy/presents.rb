@@ -15,7 +15,7 @@ class TheGame
       end
 
       def choose_item_and_player(players, jen, current_user)
-        return [] if jen.effects.include?('Tanooki Suit')
+        return [] if current_user.effects.include?('Tanooki Suit')
 
         item = find_item
         return [] if item.nil?
