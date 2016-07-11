@@ -1,6 +1,6 @@
 class TheGame
   module Strategy
-    class Warthog
+    class Multipliers
       def initialize(logger, api)
         @logger = logger
         @api = api
@@ -15,12 +15,13 @@ class TheGame
       end
 
       def choose_item_and_player(players, jen, username)
-        return [] unless (jen.effects & (item_types + ['Tanooki Suit'])).empty?
+        return [] if jen.effects.include? 'Tanooki Suit'
+        return [] unless (jen.effects & (item_types)).length >= item_types
 
         item = find_item
         return [] if item.nil?
 
-        @logger.debug "Warthog: #{item.name} chosen"
+        @logger.debug "Multipliers: #{item.name} chosen"
         return [item, 'jheilema']
       end
 
@@ -29,7 +30,7 @@ class TheGame
       end
 
       def item_types
-        ['Warthog']
+        ['Warthog', 'Moogle', 'Rush the Dog']
       end
     end
   end
