@@ -41,7 +41,7 @@ class TheGame
           item_types << "Bullet Bill"
         end
 
-        if !index.nil? && percent_diff(next_player.score, @jen.score) >= 0.2 && !next_player.wearing?('Star','Gold Ring')
+        if !index.nil? && percent_diff(next_player.score, @jen.score) >= 0.2 && !next_player.wearing?(['Star','Gold Ring'])
           item_types << "Cardboard Box"
         end
 
