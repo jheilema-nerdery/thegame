@@ -1,15 +1,11 @@
 class TheGame
   module Strategy
-    class RoundRobin
+    class RoundRobin < BaseStrategy
       def initialize(logger, api)
         @logger = logger
         @api = api
         @strategies = []
         @index = 0
-      end
-
-      def use_items?
-        true
       end
 
       def try_again_in

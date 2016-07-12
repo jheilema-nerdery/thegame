@@ -1,15 +1,6 @@
 class TheGame
   module Strategy
-    class Multipliers
-      def initialize(logger, api)
-        @logger = logger
-        @api = api
-      end
-
-      def use_items?
-        true
-      end
-
+    class Multipliers < BaseStrategy
       def try_again_in
         5
       end

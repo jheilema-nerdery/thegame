@@ -1,19 +1,6 @@
 class TheGame
   module Strategy
-    class Driveable
-      def initialize(logger, api)
-        @logger = logger
-        @api = api
-      end
-
-      def use_items?
-        true
-      end
-
-      def try_again_in
-        10
-      end
-
+    class Driveable < BaseStrategy
       def choose_item_and_player(players, jen, current_player)
         job = Job.oldest.first
         return [] unless job

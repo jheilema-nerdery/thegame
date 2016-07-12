@@ -1,10 +1,10 @@
 class TheGame
   def initialize(strategy, api, start, logger, username)
     @api         = api
-    @next_attack = start
-    @next_tick   = Time.now
-    @logger      = logger
     @strategy    = fetch_strategy(strategy, logger, api)
+    @next_attack = @strategy.starting_attack(start)
+    @next_tick   = @strategy.starting_tick
+    @logger      = logger
     @username    = username
   end
 
@@ -26,9 +26,9 @@ class TheGame
 
   def tick
     if handle_turn(@api.tick)
-      @next_tick = Time.now + 1.005
+      @next_tick = Time.now + @strategy.successful_tick
     else
-      @next_tick = Time.now + 10
+      @next_tick = Time.now + @strategy.failed_tick
     end
   end
 

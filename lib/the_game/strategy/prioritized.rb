@@ -1,14 +1,10 @@
 class TheGame
   module Strategy
-    class Prioritized
+    class Prioritized < BaseStrategy
       def initialize(logger, api)
         @logger = logger
         @api = api
         @strategies = []
-      end
-
-      def use_items?
-        true
       end
 
       def try_again_in

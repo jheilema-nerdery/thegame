@@ -1,15 +1,11 @@
 class TheGame
   module Strategy
-    class KeepUp
+    class KeepUp < BaseStrategy
       def initialize(logger, api)
         @logger = logger
         @api = api
         @players = []
         @jen = nil
-      end
-
-      def use_items?
-        true
       end
 
       def try_again_in

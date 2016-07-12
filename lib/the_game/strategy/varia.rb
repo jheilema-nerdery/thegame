@@ -1,15 +1,6 @@
 class TheGame
   module Strategy
-    class Varia
-      def initialize(logger, api)
-        @logger = logger
-        @api = api
-      end
-
-      def use_items?
-        true
-      end
-
+    class Varia < BaseStrategy
       def try_again_in
         5
       end

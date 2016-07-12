@@ -1,19 +1,6 @@
 class TheGame
   module Strategy
-    class Presents
-      def initialize(logger, api)
-        @logger = logger
-        @api = api
-      end
-
-      def use_items?
-        true
-      end
-
-      def try_again_in
-        5
-      end
-
+    class Presents < BaseStrategy
       def choose_item_and_player(players, jen, current_user)
         return [] if current_user.effects.include?('Tanooki Suit')
 

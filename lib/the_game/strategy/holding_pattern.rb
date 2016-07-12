@@ -1,16 +1,12 @@
 class TheGame
   module Strategy
-    class HoldingPattern
+    class HoldingPattern < BaseStrategy
       def initialize(logger, api)
         @logger = logger
         @api = api
         @players = []
         @effects = []
         @jen = nil
-      end
-
-      def use_items?
-        true
       end
 
       def try_again_in

@@ -1,25 +1,8 @@
 class TheGame
   module Strategy
-    class TanookiSniper
-      def initialize(logger, api)
-        @logger = logger
-        @api = api
-        @players = []
-        @effects = []
-      end
-
-      def try_again_in
-        10
-      end
-
-      def use_items?
-        true
-      end
-
+    class TanookiSniper < BaseStrategy
       def choose_item_and_player(players, jen, username)
-        @players = players
-
-        player = @players.find {|p| p != jen && has_tanooki_suit(p) }
+        player = players.find {|p| p != jen && has_tanooki_suit(p) }
         return [] if player.nil?
         @logger.debug "Player '#{player.name}' chosen"
 

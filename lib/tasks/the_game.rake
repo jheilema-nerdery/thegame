@@ -26,13 +26,13 @@ namespace :the_game do
       Thread.new do
         loop do
           sleep 0.32
-          if Time.now > player.tick_time
-            player.tick
-          end
           if player.use_items?
             if Time.now > player.attack_time
               player.attack!
             end
+          end
+          if Time.now > player.tick_time
+            player.tick
           end
         end
       end.abort_on_exception = true

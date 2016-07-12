@@ -1,49 +1,31 @@
 class TheGame
   module Strategy
-    class Offensive
-      def initialize(logger, api)
-        @logger = logger
-        @api = api
-        @players = []
-      end
-
-      def use_items?
-        true
-      end
-
-      def try_again_in
-        10
-      end
-
+    class Offensive < BaseStrategy
       def choose_item_and_player(players, jen, current)
-        @players = players
-        @jen = jen
-        @current = current
-
-        player = choose_player
+        player = choose_player(players, current)
         return [] if player.nil?
         @logger.debug "Player '#{player.name}' chosen"
 
-        item = find_item(player)
+        item = find_item(player, jen)
         return [] if item.nil?
         @logger.debug "#{item.name} chosen"
 
         return item, player.name
       end
 
-      def choose_player
-        sheildless = @players.find_all{|p| no_sheild(p) && p != @current }
+      def choose_player(players, current)
+        sheildless = players.find_all{|p| no_sheild(p) && p != current }
         sheildless.find{|p| has_multipliers(p) && !has_hadouken(p) } || sheildless.sample
       end
 
-      def find_item(player)
+      def find_item(player, jen)
         item_types = ItemLibrary::WEAPON
 
         if has_multipliers(player) && !has_hadouken(player)
           item_types = ['Hadouken']
         end
 
-        if player == @jen
+        if player == jen
           item_types = ItemLibrary::PRICK
         end
 

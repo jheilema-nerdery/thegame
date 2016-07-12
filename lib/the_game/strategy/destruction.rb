@@ -1,20 +1,12 @@
 class TheGame
   module Strategy
-    class Destruction
+    class Destruction < BaseStrategy
       def initialize(logger, api)
         @logger = logger
         @api = api
         @players = []
         @jen = nil
         @current = nil
-      end
-
-      def use_items?
-        true
-      end
-
-      def try_again_in
-        10
       end
 
       def choose_item_and_player(players, jen, current_player)

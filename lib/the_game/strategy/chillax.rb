@@ -1,6 +1,6 @@
 class TheGame
   module Strategy
-    class Chillax
+    class Chillax < BaseStrategy
       def initialize(logger, api)
       end
 
