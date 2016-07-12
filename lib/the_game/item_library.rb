@@ -43,7 +43,6 @@ class TheGame
     ]
 
     PROTECTION = [
-      "Cardboard Box",  # ???? (hides?)
       "Varia Suit",     # 1h. Holy water, Master sword gets through.
                         # Does not block: pokeball
       "Carbuncle",      # 5m "reflects" damage (inverts it? O_o)
@@ -54,6 +53,8 @@ class TheGame
     ]
 
     SWAP_PLACES = [
+      "Cardboard Box",  # sneak past your opponent, if they're not wearing
+                        # a gold ring or star
       "Bullet Bill",    # Move up a few people. Stop hitting yourself.
       "Get Over Here",  # Chance to cuddle up to your opponent.
       "Morph Ball",     # Transform into a sphere that passes two players?
