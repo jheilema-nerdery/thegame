@@ -4,7 +4,7 @@ class Player
   def initialize(player_data)
     @name = player_data[:PlayerName]
     @points = player_data[:Points]
-    @badges = extract_badges(player_data[:Badges])
+    @badges = extract_badges(player_data[:Badges]) if player_data[:Badges]
     @effects = player_data[:Effects]
   end
 
@@ -20,6 +20,10 @@ class Player
 
   def ==(player)
     self.name == player.name
+  end
+
+  def score
+    points
   end
 
 private
