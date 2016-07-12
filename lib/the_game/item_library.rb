@@ -49,7 +49,8 @@ class TheGame
       "Star",           # 5m temporary invincibility. Pokeball doesn't work,
                         # cardboard box does
       "Gold Ring",      # protection, 3m - blocks bo jackson... others?
-      "Tanooki Suit",   # blocks 3 effects
+                        # Does not block Holy Water, Hadouken
+      "Tanooki Suit",   # blocks next 3 effects
     ]
 
     SWAP_PLACES = [
