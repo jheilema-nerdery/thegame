@@ -15,7 +15,7 @@ class TheGame
 
       def choose_player(players, current)
         sheildless = players.find_all{|p| no_sheild(p) && p != current }
-        sheildless.find{|p| has_multipliers(p) && !has_hadouken(p) } || sheildless.sample
+        sheildless = sheildless.sample
       end
 
       def find_item(player, jen)
