@@ -26,6 +26,10 @@ class Player
     points
   end
 
+  def wearing?(items)
+    !(effects & items).empty?
+  end
+
 private
 
   def extract_badges(array_of_hashes)
