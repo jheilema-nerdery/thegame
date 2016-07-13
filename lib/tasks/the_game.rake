@@ -8,16 +8,18 @@ namespace :the_game do
     start_time  = Time.now + 30.seconds
 
     # get players
-    players = configs.map do |player|
-      api_key     = player[:api_key] or raise 'set your api key!'
-      username    = player[:username] or raise 'set your username!'
+    players = configs.map do |build|
+      api_key     = build[:api_key] or raise 'set your api key!'
+      username    = build[:username] or raise 'set your username!'
       logger      = TheGame::DecoratedLogger.new(username, ENV["DEBUG"])
       api         = TheGame::Api.new(logger, api_key)
       start_time  = start_time + 5.seconds
 
-      game = TheGame.new(player[:strategy], api, start_time, logger, username)
-      game.add_strategies(player[:strategies]) if player[:strategies]
-      game
+      type        = build[:class] ? "TheGame::Player::" + build[:class] : "TheGame::Player::Basic"
+
+      player = type.constantize.new(build[:strategy], api, start_time, logger, username)
+      player.add_strategies(build[:strategies]) if build[:strategies]
+      player
     end
 
     players.each do |player|
