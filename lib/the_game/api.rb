@@ -29,6 +29,10 @@ class TheGame
       get("points/#{username}")
     end
 
+    def effects(username)
+      get("effects/#{username}")
+    end
+
     def errors?
       @errors
     end
