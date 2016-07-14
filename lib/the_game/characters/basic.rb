@@ -1,6 +1,8 @@
 class TheGame
   module Characters
     class Basic
+      attr_reader :next_attack, :next_tick
+      attr_accessor :username
 
       def initialize(strategy, api, start, logger, username)
         @api         = api
@@ -11,16 +13,8 @@ class TheGame
         @username    = username
       end
 
-      def attack_time
-        @next_attack
-      end
-
-      def tick_time
-        @next_tick
-      end
-
-      def attack!(players)
-        if attack(players)
+      def attack!(leaders, jen)
+        if attack(leaders, jen)
           @next_attack = Time.now + 60
         else
           @next_attack = Time.now + @strategy.try_again_in.seconds
@@ -63,11 +57,9 @@ class TheGame
         return true
       end
 
-      def attack
-        @players = fetch_players
-        return false unless @players
-        @jen = fetch_jen
-        return false unless @jen
+      def attack(leaders, jen)
+        @players = leaders
+        @jen = jen
         @current_player = fetch_current_player
 
         @logger.debug "Players, Jen Found - #{@strategy.class}"

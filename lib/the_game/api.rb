@@ -29,6 +29,10 @@ class TheGame
       get("points/#{username}")
     end
 
+    def errors?
+      @errors
+    end
+
   private
 
     def get(path)
@@ -46,6 +50,7 @@ class TheGame
     end
 
     def curl(action, path, &block)
+      @errors = false
       url = "http://thegame.nerderylabs.com:1337/#{path}"
 
       @logger.debug "#{action.upcase} /#{path}"
@@ -53,25 +58,26 @@ class TheGame
       response = begin
         result = Curl.send(action, url, &block).body_str
       rescue Curl::Err::CurlError => e
+        @errors = true
         return "#{action.upcase} /#{path}  ****  " +
           "#{e.class} : #{e.message}  "
       end
 
       @logger.debug "#{action.upcase} /#{path} - #{response}"
 
-      process response
+      parsed = parse(response)
+      get_bonuses(parsed[:Messages]) if parsed.is_a?(Hash) && parsed[:Messages]
+      parsed
     end
 
   private
-    def process(response)
-      result = begin
+    def parse(response)
+      begin
         JSON.parse(response, symbolize_names: true)
       rescue JSON::ParserError
+        @errors = true
         response
       end
-
-      get_bonuses(result[:Messages]) if result.is_a?(Hash) && result[:Messages]
-      result
     end
 
     # check for bonus items and save them

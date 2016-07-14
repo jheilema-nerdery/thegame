@@ -6,6 +6,7 @@ namespace :the_game do
     configs     = TheGame::FileReadAndClearer.new('.config').get
     puts configs
     start_time  = Time.now + 30.seconds
+    SUSPICIOUS_POINTS = 1_337_133_713_370
 
     # get players
     players = configs.map do |build|
@@ -22,22 +23,44 @@ namespace :the_game do
       player
     end
 
-    players.each do |player|
-      sleep 0.5 # so they don't all overlap
+    # don't really care about the api here b/c we don't utilize the key
+    # for GET requests
+    logger  = TheGame::DecoratedLogger.new('fetcher', ENV["DEBUG"])
+    api     = TheGame::Api.new(logger, '')
+    fetcher = TheGame::PlayerFinder.new(api)
 
+    Thread.new do
+      loop do
+        logger.debug 'Fetching leaderboard'
+        fetcher.fetch_leaderboard
+        sleep 2 # don't kill the server
+      end
+    end.abort_on_exception = true
+
+    Thread.new do
+      loop do
+        logger.debug 'Fetching jen'
+        fetcher.fetch_jen
+        sleep 1 # don't kill the server
+      end
+    end.abort_on_exception = true
+
+    players.each do |player|
       Thread.new do
         loop do
           sleep 0.32
           if player.use_items?
-            if Time.now > player.attack_time
-              player.attack!
+            if Time.now > player.next_attack
+              player.attack!(fetcher.leaders, fetcher.jen)
             end
           end
-          if Time.now > player.tick_time
+          if Time.now > player.next_tick
             player.tick
           end
         end
       end.abort_on_exception = true
+
+      sleep 0.5 # so they don't all overlap
     end
 
     interrupted = false
