@@ -1,5 +1,5 @@
 class TheGame
-  module Player
+  module Characters
     class Basic
 
       def initialize(strategy, api, start, logger, username)
@@ -19,8 +19,8 @@ class TheGame
         @next_tick
       end
 
-      def attack!
-        if attack
+      def attack!(players)
+        if attack(players)
           @next_attack = Time.now + 60
         else
           @next_attack = Time.now + @strategy.try_again_in.seconds

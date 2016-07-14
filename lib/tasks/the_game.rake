@@ -15,7 +15,7 @@ namespace :the_game do
       api         = TheGame::Api.new(logger, api_key)
       start_time  = start_time + 5.seconds
 
-      type        = build[:class] ? "TheGame::Player::" + build[:class] : "TheGame::Player::Basic"
+      type        = build[:class] ? "TheGame::Characters::" + build[:class] : "TheGame::Characters::Basic"
 
       player = type.constantize.new(build[:strategy], api, start_time, logger, username)
       player.add_strategies(build[:strategies]) if build[:strategies]
