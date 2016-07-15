@@ -31,7 +31,7 @@ class TheGame
       end
 
       def choose_player
-        sheilded = @players.drop(1).find_all{|p| p != @jen && p != @current && sheilded(p) }
+        sheilded = @players.drop(1).find_all{|p| p != @jen && p != @current && sheilded?(p) }
         sheilded.first
       end
 
