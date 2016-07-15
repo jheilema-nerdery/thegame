@@ -46,7 +46,7 @@ I identified for sure two other botnets, one in KS (Team Bill Nye, supporting Ry
 272257 items. 68422 used, 203835 not used. 0 Wreck-it Ralphs at the end, but the high count just before the madness happened was 37.
 
 | Item Name  | # Used | # Unused |
-| ------------- | ------------- |
+| ---------- | ------ | -------- |
 | 7777 | 93 | 1956 |
 | Ambrosia | 2 | 98 |
 | Banana Peel | 3238 | 5281 |
