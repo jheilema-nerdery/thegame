@@ -16,7 +16,7 @@ class TheGame
         @current = current_player
 
         item = if !@current.wearing?('MomVoice')
-          Item.unused.oldest.naed('Leisure Suit').first
+          Item.unused.oldest.named('Leisure Suit').first
         else
           Item.unused.oldest.named('Get Over Here').first
         end
