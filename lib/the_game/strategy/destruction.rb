@@ -7,10 +7,11 @@ class TheGame
         @players = []
         @jen = nil
         @current = nil
+        @fetcher = TheGame::PlayerFinder.new(@api)
       end
 
       def choose_item_and_player(players, jen, current_player)
-        @players = players
+        @players = @fetcher.fetch_leaderboard
         @jen = jen
         @current = current_player
 
