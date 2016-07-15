@@ -8,18 +8,16 @@ class TheGame
         @jen = nil
       end
 
-      def try_again_in
-        5
-      end
-
       def choose_item_and_player(players, jen, current_player)
         @players = players
         @jen = jen
 
+        index = @players.find_index(@jen)
+        return [] if index == 1 | index == 0 # I'm in first/second, yay!
+
         player = find_player
         return [] if item.nil?
         @logger.debug "#{player.name} chosen"
-
 
         item = find_item
         return [] if item.nil?
@@ -30,37 +28,24 @@ class TheGame
 
     private
 
-      def find_item
-        index = @players.find_index(@jen)
-
-        if index == 0
-          return nil # I'm in first! woo!
-        end
-
-        next_player = @players[index-1] unless index.nil?
-
-        # don't want to mom voice myself
-        retun nil if next_player.score >= (SUSPICIOUS_POINTS - 10_000)
-
-        item_types = []
-
-        if index.nil? # not in the top ten
-          item_types << "Morph Ball"
-          item_types << "Bullet Bill"
-        end
-
-        if !index.nil? && percent_diff(next_player.score, @jen.score) >= 0.05 && !next_player.wearing?(['Star','Gold Ring','Tanooki Suit','Morger Beard'])
-          item_types << "Cardboard Box"
-        end
-
-        return nil if item_types.empty?
-
-        Item.unused.oldest.where(name: item_types).first
+      def find_player
+        @players.drop(1).find_all{|p| p !== @jen && !sheilded?(p) && !too_close(p) }.first
       end
 
+      def find_item
+        Item.unused.oldest.where(name: 'Portal Gun').first
+      end
 
-      def percent_diff(first, second)
-        (first.to_f - second) / first
+      def sheilded?(player)
+        player.wearing?(['Star','Gold Ring','Tanooki Suit','Morger Beard'])
+      end
+
+      def too_close(player)
+        player.score >= (::SUSPICIOUS_POINTS - points_left)
+      end
+
+      def points_left
+        (Time.now - ::FINALE).to_i
       end
 
     end

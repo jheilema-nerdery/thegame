@@ -28,10 +28,6 @@ class TheGame
         10
       end
 
-      def try_again_in
-        10
-      end
-
       def choose_item_and_player(players, jen, current_player)
         @points = current_player.points
 

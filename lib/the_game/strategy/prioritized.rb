@@ -7,10 +7,6 @@ class TheGame
         @strategies = []
       end
 
-      def try_again_in
-        2
-      end
-
       def add_strategy(*strategy)
         @strategies.push(*strategy)
       end

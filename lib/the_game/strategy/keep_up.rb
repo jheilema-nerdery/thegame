@@ -8,10 +8,6 @@ class TheGame
         @jen = nil
       end
 
-      def try_again_in
-        5
-      end
-
       def choose_item_and_player(players, jen, current_player)
         @players = players
         @jen = jen

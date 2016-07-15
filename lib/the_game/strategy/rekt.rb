@@ -11,7 +11,7 @@ class TheGame
       end
 
       def choose_item_and_player(players, jen, current_player)
-        if Time.now < CRAZY_TIME
+        if Time.now < ::CRAZY_TIME
           return []
         end
 
@@ -31,7 +31,7 @@ class TheGame
       end
 
       def choose_player
-        sheilded = @players.find_all{|p| p != @jen && p != @current }
+        sheilded = @players.drop(1).find_all{|p| p != @jen && p != @current && sheilded(p) }
         sheilded.first
       end
 

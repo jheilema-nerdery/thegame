@@ -27,7 +27,7 @@ class TheGame
       end
 
       def try_again_in
-        10
+        1
       end
 
       def choose_item_and_player(players, jen, current_player)
