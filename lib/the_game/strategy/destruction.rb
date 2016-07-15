@@ -36,11 +36,15 @@ class TheGame
           item_types << 'Blue Shell'
         end
 
+        if player.points > ::SUSPICIOUS_POINTS
+          item_types << 'Vanellope'
+        end
+
         Item.unused.oldest.where(name: item_types).first
       end
 
       def no_sheild(p)
-        (p.effects & (TheGame::ItemLibrary::PROTECTION - ['Varia Suit'] + ['Fus Ro Dah'])).empty?
+        (p.effects & (TheGame::ItemLibrary::PROTECTION - ['Varia Suit','Carbuncle'] + ['Fus Ro Dah'])).empty?
       end
     end
   end
