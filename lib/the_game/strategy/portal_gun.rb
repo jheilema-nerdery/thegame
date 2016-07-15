@@ -12,12 +12,16 @@ class TheGame
         @players = players
         @jen = jen
 
-        index = @players.find_index(@jen)
-        return [] if index == 1 || index == 0 # I'm in first/second, yay!
+        jen_index = @players.find_index(@jen)
+        return [] if jen_index == 1 || jen_index == 0 # I'm in first/second, yay!
 
         player = find_player
         return [] if player.nil?
+        player_index = @players.find_index(player)
         @logger.debug "#{player.name} chosen"
+
+        # oops. don't portal gun to people behind me :/
+        return [] if player_index > jen_index
 
         item = find_item
         return [] if item.nil?
