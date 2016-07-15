@@ -44,7 +44,7 @@ class TheGame
       end
 
       def no_sheild(p)
-        (p.effects & (TheGame::ItemLibrary::PROTECTION - ['Varia Suit','Carbuncle'] + ['Fus Ro Dah'])).empty?
+        (p.effects & (TheGame::ItemLibrary::PROTECTION - ['Varia Suit'] + ['Fus Ro Dah'])).empty?
       end
     end
   end
