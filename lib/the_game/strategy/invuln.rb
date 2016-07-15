@@ -7,9 +7,6 @@ class TheGame
 
       def choose_item_and_player(players, jen, current_player)
         return [] if jen.effects.include? 'Tanooki Suit'
-        # give the multipliers some time to work, don't put an invuln item on
-        # until all are on
-        return [] if (ItemLibrary::MULTIPLIER - jen.effects).length > 0
 
         item = find_item(jen.effects)
         return [] if item.nil?

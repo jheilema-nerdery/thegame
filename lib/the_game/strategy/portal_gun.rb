@@ -1,6 +1,6 @@
 class TheGame
   module Strategy
-    class KeepUp < BaseStrategy
+    class PortalGun < BaseStrategy
       def initialize(logger, api)
         @logger = logger
         @api = api
