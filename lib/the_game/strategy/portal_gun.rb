@@ -13,7 +13,7 @@ class TheGame
         @jen = jen
 
         index = @players.find_index(@jen)
-        return [] if index == 1 | index == 0 # I'm in first/second, yay!
+        return [] if index == 1 || index == 0 # I'm in first/second, yay!
 
         player = find_player
         return [] if item.nil?
