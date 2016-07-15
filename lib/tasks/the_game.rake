@@ -5,7 +5,7 @@ namespace :the_game do
     # Setup
     configs     = TheGame::FileReadAndClearer.new('.config').get
     puts configs
-    start_time  = Time.now + 30.seconds
+    start_time  = Time.now + 3.seconds
     FINALE      = Time.parse('July 15 2016 16:45:00 CDT')
     CRAZY_TIME  = FINALE - 45.minutes
     SUSPICIOUS_POINTS = 1_337_133_713_370

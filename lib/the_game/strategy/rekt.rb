@@ -11,7 +11,7 @@ class TheGame
       end
 
       def choose_item_and_player(players, jen, current_player)
-        if Time.now < ::CRAZY_TIME
+        if Time.now < (::FINALE - 10.minutes)
           return []
         end
 
