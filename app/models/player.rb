@@ -27,6 +27,7 @@ class Player
   end
 
   def wearing?(items)
+    items = [items] if items.is_a? String
     !(effects & items).empty?
   end
 
