@@ -19,7 +19,7 @@ class TheGame
         @jen = jen
         @current = current_player
 
-        item = Item.unused.oldest.named('Wreck It Ralph').first
+        item = Item.unused.oldest.named('Wreck-it Ralph').first
         return [] if item.nil? # out of ralphs, oh well=
         @logger.debug "#{item.name} chosen"
 
