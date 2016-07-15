@@ -42,10 +42,6 @@ class TheGame
       def no_sheild(p)
         (p.effects & (TheGame::ItemLibrary::PROTECTION - ['Varia Suit', 'Carbuncle'])).empty?
       end
-
-      def percent_diff(first, second)
-        (first.to_f - second) / first
-      end
     end
   end
 end
