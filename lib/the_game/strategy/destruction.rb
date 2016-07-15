@@ -14,10 +14,6 @@ class TheGame
         @jen = jen
         @current = current_player
 
-        if ( @players.first == @jen && percent_diff(@jen.points, @players.second.points) >= 0.4 )
-          return []
-        end
-
         player = choose_player
         return [] if player.nil?
         @logger.debug "Player '#{player.name}' chosen"
@@ -30,27 +26,21 @@ class TheGame
       end
 
       def choose_player
-        sheildless = @players.find_all{|p| no_sheild(p) && p != @jen && p != @current }
-        sheildless.first
+        sheildless = @players.find_all{|p| no_sheild(p) && p != @jen && p != @current }[0..4]
+        sheildless.sample
       end
 
       def find_item(player)
-        item_types = ItemLibrary::BIG_GUN
-        item_types -= player.effects
-
-        unless @players.include? @current
-          item_types += 'Get Over Here'
+        item_types = ["Master Sword"]
+        if player == @players[0]
+          item_types << 'Blue Shell'
         end
 
         Item.unused.oldest.where(name: item_types).first
       end
 
       def no_sheild(p)
-        (p.effects & (TheGame::ItemLibrary::PROTECTION - ['Varia Suit'])).empty?
-      end
-
-      def percent_diff(first, second)
-        (first.to_f - second) / first
+        (p.effects & (TheGame::ItemLibrary::PROTECTION - ['Varia Suit'] + ['Fus Ro Dah'])).empty?
       end
     end
   end

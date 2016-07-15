@@ -19,7 +19,7 @@ class TheGame
         # keep working with the old data.
         return
       end
-      @leaders = Player.all_from_json players_data
+      @leaders = ::Player.all_from_json players_data
     end
 
     def fetch_jen
@@ -29,14 +29,14 @@ class TheGame
         # keep working with the old data.
         return
       end
-      @jen = Player.new jen_data
+      @jen = ::Player.new jen_data
     end
 
     def fetch_players(players)
       players.each do |player|
         data = @api.player(player.username)
         unless @api.errors?
-          @players[username] = Player.new data
+          @players[username] = ::Player.new data
         end
       end
     end

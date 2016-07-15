@@ -1,8 +1,7 @@
 class TheGame
   module Characters
     class Basic
-      attr_reader :next_attack, :next_tick
-      attr_accessor :username
+      attr_reader :next_attack, :next_tick, :username
 
       def initialize(strategy, api, start, logger, username)
         @api         = api
@@ -15,7 +14,8 @@ class TheGame
 
       def attack!(leaders, jen)
         if attack(leaders, jen)
-          @next_attack = Time.now + 60
+          @next_attack = Time.now + 60 unless @current_player.vampire?
+          @next_attack = Time.now + 16 if @current_player.vampire?
         else
           @next_attack = Time.now + @strategy.try_again_in.seconds
         end

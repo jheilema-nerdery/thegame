@@ -31,9 +31,8 @@ namespace :the_game do
 
     Thread.new do
       loop do
-        logger.debug 'Fetching leaderboard'
         fetcher.fetch_leaderboard
-        sleep 2 # don't kill the server
+        sleep 1 # don't kill the server
       end
     end.abort_on_exception = true
 

@@ -51,6 +51,7 @@ class TheGame
       "Gold Ring",      # protection, 3m - blocks bo jackson... others?
                         # Does not block Holy Water, Hadouken
       "Tanooki Suit",   # blocks next 3 effects
+      "Morger Beard",   # invuln, rare
     ]
 
     SWAP_PLACES = [
