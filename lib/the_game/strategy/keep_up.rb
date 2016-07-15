@@ -69,11 +69,11 @@ class TheGame
       end
 
       def too_close(player)
-        player.score >= (SUSPICIOUS_POINTS - points_left)
+        player.score >= (::SUSPICIOUS_POINTS - points_left)
       end
 
       def points_left
-        (Time.now - FINALE).to_i
+        (Time.now - ::FINALE).to_i
       end
 
     end
