@@ -15,7 +15,7 @@ class TheGame
       def attack!(leaders, jen)
         if attack(leaders, jen)
           @next_attack = Time.now + 60 unless @current_player.vampire?
-          @next_attack = Time.now + 5 if @current_player.vampire?
+          @next_attack = Time.now + 15.02 if @current_player.vampire?
         else
           @next_attack = Time.now + @strategy.try_again_in.seconds
         end
