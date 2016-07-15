@@ -29,14 +29,14 @@ class TheGame
       def find_item
         index = @players.find_index(@jen)
 
-        if index == 0
-          return nil # I'm in first! woo!
+        if index == 1 || index == 0
+          return nil # I'm in first/second! woo!
         end
 
         next_player = @players[index-1] unless index.nil?
 
         # don't want to mom voice myself
-        retun nil if next_player.score >= (SUSPICIOUS_POINTS - 10_000)
+        retun nil if next_player && next_player.score >= (SUSPICIOUS_POINTS - 10_000)
 
         item_types = []
 
