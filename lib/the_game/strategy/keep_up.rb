@@ -33,30 +33,47 @@ class TheGame
           return nil # I'm in first/second! woo!
         end
 
-        next_player = @players[index-1] unless index.nil?
+        above  = @players[index-1] unless index.nil?
+        second = @players[index-2] unless index.nil? || index <= 1
+        third  = @players[index-3] unless index.nil? || index <= 2
 
         # don't want to mom voice myself
-        retun nil if next_player && next_player.score >= (SUSPICIOUS_POINTS - 10_000)
+        retun nil if above && too_close(above)
 
         item_types = []
 
         if index.nil? # not in the top ten
           item_types << "Morph Ball"
           item_types << "Bullet Bill"
-        end
-
-        if !index.nil? && percent_diff(next_player.score, @jen.score) >= 0.05 && !next_player.wearing?(['Star','Gold Ring','Tanooki Suit','Morger Beard'])
           item_types << "Cardboard Box"
+          return Item.unused.oldest.where(name: item_types).first
         end
 
-        return nil if item_types.empty?
+        if third && !sheilded?(third) && !too_close(third)
+          return Item.unused.oldest.where(name: "Bullet Bill").first
+        end
 
-        Item.unused.oldest.where(name: item_types).first
+        if second && !sheilded?(second) && !too_close(second)
+          return Item.unused.oldest.where(name: "Morph Ball").first
+        end
+
+        if above && !sheilded?(above) && !too_close(above)
+          return Item.unused.oldest.where(name: "Cardboard Box").first
+        end
+
+        return nil
       end
 
+      def sheilded?(player)
+        player.wearing?(['Star','Gold Ring','Tanooki Suit','Morger Beard'])
+      end
 
-      def percent_diff(first, second)
-        (first.to_f - second) / first
+      def too_close(player)
+        player.score >= (SUSPICIOUS_POINTS - points_left)
+      end
+
+      def points_left
+        (Time.now - FINALE).to_i
       end
 
     end

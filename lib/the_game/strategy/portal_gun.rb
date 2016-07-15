@@ -16,12 +16,16 @@ class TheGame
         @players = players
         @jen = jen
 
-        item = find_item
+        player = find_player
+        return [] if item.nil?
+        @logger.debug "#{player.name} chosen"
 
+
+        item = find_item
         return [] if item.nil?
         @logger.debug "#{item.name} chosen"
 
-        return item, 'jheilema'
+        return item, player.name
       end
 
     private
