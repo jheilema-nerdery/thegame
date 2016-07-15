@@ -30,6 +30,10 @@ class Player
     !(effects & items).empty?
   end
 
+  def vampire?
+    self.badges.include? 'Vampire'
+  end
+
 private
 
   def extract_badges(array_of_hashes)
