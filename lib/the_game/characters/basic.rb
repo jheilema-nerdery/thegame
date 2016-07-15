@@ -50,7 +50,7 @@ class TheGame
         end
 
         if !turn[:Item].nil?
-          Item.from_json(turn[:Item]).save
+          ::Item.from_json(turn[:Item]).save
           @logger.info turn
         end
 

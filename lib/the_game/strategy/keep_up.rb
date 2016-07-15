@@ -45,15 +45,15 @@ class TheGame
           return Item.unused.oldest.where(name: item_types).first
         end
 
-        if third && !sheilded?(third) && !too_close(third)
+        if third && !sheilded?(third)
           return Item.unused.oldest.where(name: "Bullet Bill").first
         end
 
-        if second && !sheilded?(second) && !too_close(second)
+        if second && !sheilded?(second)
           return Item.unused.oldest.where(name: "Morph Ball").first
         end
 
-        if above && !sheilded?(above) && !too_close(above)
+        if above && !sheilded?(above)
           return Item.unused.oldest.where(name: "Cardboard Box").first
         end
 

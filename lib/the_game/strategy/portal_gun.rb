@@ -29,7 +29,7 @@ class TheGame
     private
 
       def find_player
-        @players.drop(1).find_all{|p| p !== @jen && !sheilded?(p) && !too_close(p) }.first
+        @players.drop(1).find_all{|p| p !== @jen && !sheilded?(p) }.first
       end
 
       def find_item
