@@ -16,7 +16,7 @@ class TheGame
         return [] if index == 1 || index == 0 # I'm in first/second, yay!
 
         player = find_player
-        return [] if item.nil?
+        return [] if player.nil?
         @logger.debug "#{player.name} chosen"
 
         item = find_item
