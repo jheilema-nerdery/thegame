@@ -34,7 +34,7 @@ class TheGame
         third  = @players[index-3] unless index.nil? || index <= 2
 
         # don't want to mom voice myself
-        retun nil if above && too_close(above)
+        return nil if above
 
         item_types = []
 
