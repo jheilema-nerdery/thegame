@@ -43,7 +43,7 @@ The bus had shitty wifi.
 
 I identified for sure two other botnets, one in KS (Team Bill Nye, supporting Ryan Evans, I spotted 6 suspects) and one in MN (Team Darwin, supporting Theo Kanning, I spotted 8 suspects, including Mr Kanning). 
 
-272257 items. 68422 used, 203835 not used. 0 Wreck-it Ralphs at the end, but the high count just before the madness happened was 37.
+272,257 items. 68,422 used, 203,835 not used. 0 Wreck-it Ralphs at the end, but the high count just before the madness happened was 37.
 
 | Item Name  | # Used | # Unused |
 | ---------- | ------ | -------- |
